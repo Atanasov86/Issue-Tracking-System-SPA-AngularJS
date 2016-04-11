@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="IssueTrackingSystem">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Issue Tracking System</title>
+    <meta name="description" content="Issue Tracking System">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/superhero-theme.min.css">
+    <link rel="stylesheet" href="app/css/app.css">
+
+</head>
+<body>
+<!--<div class="navbar navbar-default navbar-fixed-top">-->
+    <!--<div class="container">-->
+        <!--<div class="navbar-header">-->
+            <!--<a href="#/" class="navbar-brand">SoftUni Issue Tracker</a>-->
+            <!--<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+        <!--</div>-->
+        <!--<div class="navbar-collapse collapse" id="navbar-main">-->
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li>-->
+                    <!--<a href="#/">Home</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#/login">login</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#/help">Help</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="container">
+    <div ng-view>
+
+    </div>
+</div>
+
+<script src="app/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="app/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="app/bower_components/angular/angular.js"></script>
+<script src="app/bower_components/angular-route/angular-route.js"></script>
+<script src="app/js/app.js"></script>
+<script src="app/home/home.js"></script>
+<script src="app/login/login.js"></script>
+<script src="app/register/register.js"></script>
+</body>
+</html>
