@@ -1,37 +1,32 @@
 <div class="well bs-component">
-    <form class="form-horizontal" name="registerForm" ng-controller="AuthenticationController" ng-submit="register()">
+    <form name="registerForm">
         <fieldset>
             <legend>Register</legend>
-            <div class="form-group">
-                <label for="inputUsername" class="col-lg-2 control-label">Username</label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control" id="inputUsername" ng-model="registerData.username" placeholder="Username" required="required">
+            <div>
+                <label for="inputUsername">Username</label>
+                <div>
+                    <input type="email" class="form-control"  id="inputUsername" ng-model="registerData.Email" placeholder="Username" required="required">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-                <div class="col-lg-10">
-                    <input type="password" class="form-control" id="inputPassword" ng-model="registerData.password" placeholder="Password" required="required">
+            <div>
+                <label for="inputPassword" >Password</label>
+                <div>
+                    <input type="password" class="form-control" minlength="6" maxlength="100" id="inputPassword" ng-model="registerData.Password" placeholder="Password" required="required">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="confirmPassword" class="col-lg-2 control-label">Confirm Password</label>
-                <div class="col-lg-10">
-                    <input type="password" class="form-control" id="confirmPassword" ng-model="registerData.confirmPassword" placeholder="Confirm Password" required="required">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-                <div class="col-lg-10">
-                    <input type="email" class="form-control" id="inputEmail" ng-model="registerData.email" placeholder="Email" required="required">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="register-btn">
-                    <a href="#/login" class="btn btn-default">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Register</button>
+            <div>
+                <label for="confirmPassword">Confirm Password</label>
+                <div >
+                    <input type="password" class="form-control" minlength="6" maxlength="100" id="confirmPassword" ng-model="registerData.ConfirmPassword" placeholder="Confirm Password" required="required">
                 </div>
             </div>
         </fieldset>
     </form>
+    <div>
+        <div class="register-btn">
+            <button ng-disabled="registerForm.$invalid || registerData.Password != registerData.ConfirmPassword" ng-click="register(registerData)" type="submit" class="btn btn-success btn-register">Register</button>
+            <a href="#/login" class="btn btn-primary">Cancel</a>
+
+        </div>
+    </div>
 </div>

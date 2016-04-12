@@ -9,7 +9,7 @@ body {
     margin: 0 auto;
 }
 
-.btn-success {
+.btn-success, .btn-primary {
     width: 100%;
     margin-top: 20px;
 }

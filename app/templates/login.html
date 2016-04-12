@@ -1,22 +1,21 @@
 <img src="app/images/softuni-code-wizard.png" alt="wizard-logo">
 <h1>SoftUni Issue Tracker</h1>
 <div class="well bs-component">
-  <div class="form-group">
-          <label for="inputUsername">
-            Username
-          </label>
-          <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+    <form name="loginForm" class="form-group">
+        <label for="inputUsername">Username</label>
+        <input type="text" ng-model="user.Username" class="form-control" id="inputUsername" placeholder="Username"
+               required="required">
 
-          <label for="inputPassword">
-            Password
-          </label>
+        <label for="inputPassword">Password</label>
 
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <input type="password" ng-model="user.Password" class="form-control" id="inputPassword" placeholder="Password"
+               required="required">
+        <button type="submit" ng-disabled="loginForm.$invalid" ng-click="login(user)" class="btn btn-success">Sign in
+        </button>
+    </form>
 
-          <button type="submit" class="btn btn-success">Sign in</button>
-  </div>
-  <p class="register">
+    <p class="register">
         New to SoftUni Issue Tracker?
         <a href="#/register">Please register</a>.
-  </p>
+    </p>
 </div>
