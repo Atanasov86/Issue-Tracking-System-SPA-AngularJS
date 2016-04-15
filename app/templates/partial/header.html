@@ -1,21 +1,22 @@
-<div ng-if="true" class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top" ng-if="authService.isLoggedIn()">
     <div class="container">
         <div class="navbar-header">
-            <a href="#/home" class="navbar-brand">SoftUni Issue Tracker</a>
+            <a href="#/home/user" class="navbar-brand">SoftUni Issue Tracker</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#/home">Home</a>
+                    <a href="#/home/user">Dashboard</a>
                 </li>
                 <li>
-                    <a href="#/login">login</a>
-                </li>
-                <li>
-                    <a href="#/help">Help</a>
+                    <a href="#/project">Projects</a>
                 </li>
             </ul>
-
+            <ul class="nav navbar-nav navbar-right">
+                <li><span>{{authService.getCurrentUser()}}</span></li>
+                <li><a ng-click="logout()" type="button" href="#/login">Logout</a></li>
+            </ul>
         </div>
+
     </div>
 </div>

@@ -29,6 +29,7 @@ app.factory('authService', [
             var deferred = $q.defer();            
             
             var serviceURL = BASE_URL + 'api/Token';
+            
             $http.post(serviceURL, $httpParamSerializer(user))
                 .then(function (response) {
                     deferred.resolve(response);
@@ -42,21 +43,51 @@ app.factory('authService', [
         function logout() {
             var deferred = $q.defer();
 
-            var serviceURL = BASE_URL + 'api/Account/Logout'
+            var serviceURL = BASE_URL + 'api/Account/Logout';
+
+            $http.post(serviceURL, null)
+                .then(function (response) {
+                    deferred.resolve(response);
+                }, function (error) {
+                    deferred.reject(error)
+                });
+
+            return deferred.promise;
         }
 
         function isLoggedIn() {
-            if(sessionStorage['currentUser']){
-                return true;
-            }
+            return sessionStorage['currentUser'];
+        }
 
-            return false;
+        function getCurrentUser() {
+            return sessionStorage['currentUser'];
+        }
+
+        function isAdmin() {
+            setAuthHeaders();
+
+            var serviceURL = BASE_URL + 'Users/me';
+
+            $http.get(serviceURL)
+                .then(function (response) {
+                    sessionStorage.isAdmin = response.data.isAdmin;
+                    sessionStorage.userId = response.data.Id;
+                }, function (error) {
+                    console.log(error)
+                });
+        }
+
+        function setAuthHeaders() {
+            $http.defaults.headers.common.Authorization = 'Bearer ' + sessionStorage.authToken;
         }
 
         return {
             register: register,
             login: login,
             logout: logout,
-            isLoggedIn: isLoggedIn
+            isAdmin: isAdmin,
+            isLoggedIn: isLoggedIn,
+            getCurrentUser: getCurrentUser,
+            setAuthHeaders: setAuthHeaders
         }
     }]);

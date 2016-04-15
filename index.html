@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="IssueTrackingSystem">
+<html lang="en" ng-app="IssueTrackingSystem" ng-controller="AuthenticationController">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/superhero-theme.min.css">
+    <link rel="stylesheet" href="app/bower_components/ng-notify/dist/ng-notify.min.css">
     <link rel="stylesheet" href="app/css/app.css">
 
 </head>
@@ -22,13 +23,26 @@
     </div>
 </div>
 
+<footer id="app-footer">
+    <h5>&copy; 2016 by Software University Foundation, No Rights Reserved</h5>
+</footer>
+
 <script src="app/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="app/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="app/bower_components/angular/angular.js"></script>
 <script src="app/bower_components/angular-route/angular-route.js"></script>
+<script src="app/bower_components/ng-notify/dist/ng-notify.min.js"></script>
+
 
 <script src="app/js/app.js"></script>
+
+<script src="app/js/services/notifyService.js"></script>
 <script src="app/js/services/authService.js"></script>
+<script src="app/js/services/issueService.js"></script>
+
+
 <script src="app/js/controllers/AuthenticationController.js"></script>
+<script src="app/js/controllers/UserIssueController.js"></script>
+
 </body>
 </html>
