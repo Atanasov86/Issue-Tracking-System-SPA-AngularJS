@@ -14,7 +14,6 @@ app.factory('authService', [
 
             $http.post(serviceURL, user)
                 .then(function (response) {
-                    console.log(response);
                     deferred.resolve(response);
                 }, function (error) {
                     deferred.reject(error);
@@ -25,16 +24,34 @@ app.factory('authService', [
 
         function login(user) {
             user.grant_type = 'password';
-            
-            var deferred = $q.defer();            
-            
+
+            var deferred = $q.defer();
+
+
             var serviceURL = BASE_URL + 'api/Token';
-            
+
             $http.post(serviceURL, $httpParamSerializer(user))
                 .then(function (response) {
-                    deferred.resolve(response);
+                    var currentUser = {};
+                    currentUser.authToken = response.data.access_token;
+                    currentUser.username = response.data.userName;
+
+                    var request = {
+                        method: 'GET',
+                        url: BASE_URL + 'Users/me',
+                        headers: {Authorization: 'Bearer ' + currentUser.authToken}
+                    };
+
+                    $http(request)
+                        .then(function (userData) {
+                            currentUser.isAdmin = userData.data.isAdmin;
+                            currentUser.userId = userData.data.Id;
+                            sessionStorage.currentUser = JSON.stringify(currentUser);
+
+                            deferred.resolve(userData);
+                        });
                 }, function (error) {
-                    deferred.reject(error)
+                    deferred.reject(error);
                 });
 
             return deferred.promise;
@@ -49,45 +66,62 @@ app.factory('authService', [
                 .then(function (response) {
                     deferred.resolve(response);
                 }, function (error) {
-                    deferred.reject(error)
+                    deferred.reject(error);
+                });
+
+            return deferred.promise;
+        }
+
+        function changePassword(passwordData) {
+            var deferred = $q.defer();
+            
+            var serviceURL = BASE_URL + 'api/Account/ChangePassword';
+
+            setAuthHeaders();
+
+            $http.post(serviceURL, passwordData)
+                .then(function (response) {
+                    deferred.resolve(response);
+                }, function (error) {
+                    deferred.reject(error);
                 });
 
             return deferred.promise;
         }
 
         function isLoggedIn() {
-            return sessionStorage['currentUser'];
+            return sessionStorage.currentUser !== undefined;
         }
 
         function getCurrentUser() {
-            return sessionStorage['currentUser'];
+            var currentUser = sessionStorage.currentUser;
+            if (currentUser) {
+                return JSON.parse(sessionStorage.currentUser);
+            }
         }
 
         function isAdmin() {
-            setAuthHeaders();
-
-            var serviceURL = BASE_URL + 'Users/me';
-
-            $http.get(serviceURL)
-                .then(function (response) {
-                    sessionStorage.isAdmin = response.data.isAdmin;
-                    sessionStorage.userId = response.data.Id;
-                }, function (error) {
-                    console.log(error)
-                });
+            var currentUser = JSON.parse(sessionStorage.currentUser);
+            return currentUser.isAdmin;
         }
 
         function setAuthHeaders() {
-            $http.defaults.headers.common.Authorization = 'Bearer ' + sessionStorage.authToken;
+            var currentUser = JSON.parse(sessionStorage.currentUser);
+            $http.defaults.headers.common.Authorization = 'Bearer ' + currentUser.authToken;
         }
 
         return {
             register: register,
             login: login,
             logout: logout,
+            changePassword: changePassword,
             isAdmin: isAdmin,
             isLoggedIn: isLoggedIn,
             getCurrentUser: getCurrentUser,
             setAuthHeaders: setAuthHeaders
-        }
-    }]);
+        };
+    }
+]);
+
+
+

@@ -1,9 +1,9 @@
 "use strict";
 
 app.controller('AuthenticationController', [
-    '$scope',    
+    '$scope',
     'authService',
-    '$location',    
+    '$location',
     'notifyService',
     function ($scope, authService, $location, notifyService) {
 
@@ -11,24 +11,17 @@ app.controller('AuthenticationController', [
 
         $scope.login = function (user) {
             authService.login(user)
-                .then(function (accessToken) {
-                    sessionStorage.currentUser = user.Username;
-                    sessionStorage.authToken = accessToken.data.access_token;
-
-                    authService.isAdmin();
-
-                    console.log(sessionStorage.isAdmin);
-                    if (sessionStorage.isAdmin) {
-                        $location.path('/home/admin');
-                        // TODO : redirect ot admin dashboard
-                    } else {
-                        $location.path('/home/user');
-                    }
-
-                    notifyService.success('Login successful.');
+                .then(function () {
+                    // if (authService.isAdmin()) {
+                    //     $location.path('/home/admin');
+                    // } else {
+                    //     $location.path('/home/user');
+                    // }
+                    $location.path('/');
+                    notifyService.success('Login successfully.');
                 }, function (error) {
                     notifyService.error(error.data.error_description);
-                })
+                });
         };
 
         $scope.register = function (user) {
@@ -37,11 +30,26 @@ app.controller('AuthenticationController', [
                     notifyService.success("Register successfully.");
                 }, function (error) {
                     notifyService.error(error.data.ModelState[''][0]);
-                })
+                });
         };
 
         $scope.logout = function () {
             sessionStorage.clear();
-            notifyService.success("Logout successfully.")
-        };        
-    }]);
+            notifyService.success("Logout successfully.");
+        };
+
+        $scope.changePassword = function (passwordData) {
+            authService.changePassword(passwordData)
+                .then(function () {
+                    notifyService.success('Password has been changed successfully.');
+                    if (authService.isAdmin()) {
+                        $location.path('/home/admin');
+                    } else {
+                        $location.path('/home/user');
+                    }
+                }, function (error) {                    
+                    notifyService.error(error.data.ModelState[''][0]);
+                });
+        };
+    }
+]);

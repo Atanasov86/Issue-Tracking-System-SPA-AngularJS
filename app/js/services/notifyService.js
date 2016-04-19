@@ -27,5 +27,10 @@ app.factory('notifyService', [
             success: success,
             error: error,
             info: info
-        }
-    }]);
+        };
+    }
+]);
+
+
+
+

@@ -9,13 +9,21 @@ body {
     margin: 0 auto;
 }
 
-.btn-success, .btn-primary {
+.btn-login, .btn-register, .btn-cancel {
     width: 100%;
     margin-top: 20px;
 }
 
+.btn-add-project, .btn-add-issue {
+    width: 200px;
+}
+
 .register-btn {
     text-align: center;
+}
+
+.buttons {
+    margin-left: 32%;
 }
 
 img {
@@ -35,6 +43,10 @@ h1 {
     font-size: 22px;
 }
 
+.pagination > li > a {
+    background-color: #2B3E50;
+}
+
 a {
     font-size: 16px;
 }
@@ -43,18 +55,38 @@ li > span {
     font-size: 16px;
 }
 
-span {
+.user {
     display: block;
-    padding: 11px 15px;
+    padding: 10px 15px;
 }
 
 #projects {
-    width: 30%;
+    width: 29%;
+    border-radius: 10px;
+    margin-right: 10px;
+    background-color: #2b3e50;
+    vertical-align: top;
     display: inline-block;
 }
 
+#projects > h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+#projects > div  > ul > li {
+    list-style: none;
+    display: block;
+}
+
+#projects > div  > ul > li > a {
+    text-decoration: none;
+}
+
 .table-my-issues {
-    width: 70%;
+    width: 67%;
+    border-radius: 10px;
+    margin-left: 10px;
     display: inline-block;
 }
 
