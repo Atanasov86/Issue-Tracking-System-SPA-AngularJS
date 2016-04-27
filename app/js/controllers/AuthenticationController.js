@@ -12,11 +12,6 @@ app.controller('AuthenticationController', [
         $scope.login = function (user) {
             authService.login(user)
                 .then(function () {
-                    // if (authService.isAdmin()) {
-                    //     $location.path('/home/admin');
-                    // } else {
-                    //     $location.path('/home/user');
-                    // }
                     $location.path('/');
                     notifyService.success('Login successfully.');
                 }, function (error) {
@@ -42,11 +37,7 @@ app.controller('AuthenticationController', [
             authService.changePassword(passwordData)
                 .then(function () {
                     notifyService.success('Password has been changed successfully.');
-                    if (authService.isAdmin()) {
-                        $location.path('/home/admin');
-                    } else {
-                        $location.path('/home/user');
-                    }
+                    $location.path('/');
                 }, function (error) {                    
                     notifyService.error(error.data.ModelState[''][0]);
                 });

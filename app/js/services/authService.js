@@ -74,7 +74,7 @@ app.factory('authService', [
 
         function changePassword(passwordData) {
             var deferred = $q.defer();
-            
+
             var serviceURL = BASE_URL + 'api/Account/ChangePassword';
 
             setAuthHeaders();
@@ -102,6 +102,10 @@ app.factory('authService', [
 
         function isAdmin() {
             var currentUser = JSON.parse(sessionStorage.currentUser);
+            if(!currentUser) {
+                return false;
+            }
+
             return currentUser.isAdmin;
         }
 
@@ -122,6 +126,3 @@ app.factory('authService', [
         };
     }
 ]);
-
-
-

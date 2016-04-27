@@ -1,13 +1,13 @@
 <div class="jumbotron table table-striped table-hover">
     <h1>Dashboard</h1>
-    <div id="projects" ng-controller="IssueController">
+    <div id="projects" ng-controller="ProjectController">
         <h2>Affiliated Projects</h2>
         <div>
             <ul>
-                <li><span class="glyphicon glyphicon-triangle-right"></span><a href="">Project 1</a></li>
-                <li><span class="glyphicon glyphicon-triangle-right"></span><a href="">Project 2</a></li>
-                <li><span class="glyphicon glyphicon-triangle-right"></span><a href="">Project 3</a></li>
-                <li><span class="glyphicon glyphicon-triangle-right"></span><a href="">Project 4</a></li>
+                <li ng-repeat="project in projects.Projects">
+                    <span class="glyphicon glyphicon-triangle-right"></span>
+                    <a href="">{{project.Name}}</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -22,16 +22,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="issue in issues.Issues">
-                <td>{{issue.Title}}</td>
+            <tr ng-repeat="issue in issues">
+                <td ng-click="viewIssue(issue.Id)">{{issue.Title}}</td>
                 <td>{{issue.Description}}</td>
-                <td>{{issue.Project.Name}}</td>
+                <td ng-click="viewProject(issue.Project.Id)">{{issue.Project.Name}}</td>
                 <td>{{issue.DueDate | date:'dd-MM-yyyy'}}</td>
             </tr>
             </tbody>
         </table>
         <pagination total-items="AllIssues" ng-model="pageStart"
-                    items-per-page="pageSize" ng-change="getAllMyIssues()"
+                    items-per-page="pageSize" ng-change="getCurrentUserIssues()"
                     max-size="9" boundary-links="true"
                     class="aligner">
         </pagination>

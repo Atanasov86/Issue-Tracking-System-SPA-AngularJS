@@ -1,0 +1,49 @@
+<div class=jumbotron>
+    <h2> Add new Issue</h2>
+    <form ng-controller="IssueController">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Title</label>
+            <input ng-model="issueData.Project.Name" type="text" class="form-control" id="project-name" placeholder="Issue Title">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Assignee</label>
+            <select class="form-control">
+                <option>Kircho</option>
+                <option>Petkancho</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Project</label>
+            <select class="form-control">
+                <option>SIT</option>
+                <option>Cart Management</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Issue Key</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Issue Key">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Priority</label>
+            <select class="form-control">
+                <option>Urgent</option>
+                <option>Medium</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Due Date</label>
+            <input type="date" class="form-control" id="exampleInputEmail1" placeholder="dd/mm/yyyy">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Labels (comma separated)</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Labels" value="Soft">
+            <br>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Description</label>
+            <textarea class="form-control" placeholder="Description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-add-issue btn-success">Add Issue</button>
+        <a class="btn btn-add-issue btn-primary" href="#/">Cancel</a>
+    </form>
+</div>

@@ -8,7 +8,7 @@ app.factory('issueService', [
     'authService',
     function ($http, $q, BASE_URL, pageSize, authService) {
 
-        function getAllMyIssues() {
+        function getCurrentUserIssues() {
             var deferred = $q.defer();
 
             authService.setAuthHeaders();
@@ -33,7 +33,7 @@ app.factory('issueService', [
 
             authService.setAuthHeaders();
 
-            var serviceURL = BASE_URL + 'Issues' + issueId;
+            var serviceURL = BASE_URL + 'Issues/' + issueId;
 
             $http.get(serviceURL)
                 .then(function (response) {
@@ -45,12 +45,12 @@ app.factory('issueService', [
             return deferred.promise;
         }
 
-        function getAllIssuesByProjectId(projectId) {
+        function getProjectIssuesById(projectId) {
             var deferred = $q.defer();
 
             authService.setAuthHeaders();
 
-            var serviceURL = BASE_URL + 'Projects'+ projectId + 'Issues';
+            var serviceURL = BASE_URL + 'Projects/'+ projectId + '/Issues';
 
             $http.get(serviceURL)
                 .then(function (response) {
@@ -79,14 +79,14 @@ app.factory('issueService', [
             return deferred.promise;
         }
 
-        function changeIssueStatus(statusId) {
+        function changeIssueStatus(issueId, statusId) {
             var deferred = $q.defer();
 
             authService.setAuthHeaders();
 
-            var serviceURL = BASE_URL + 'Issues';
+            var serviceURL = BASE_URL + 'Issues/' + issueId + '/changestatus?statusid=' + statusId;
 
-            $http.post(serviceURL, issue)
+            $http.put(serviceURL)
                 .then(function (response) {
                     deferred.resolve(response);
                 }, function (error) {
@@ -99,13 +99,11 @@ app.factory('issueService', [
 
 
         return {
-            getAllMyIssues: getAllMyIssues,
+            getCurrentUserIssues: getCurrentUserIssues,
             getIssueById: getIssueById,
             addIssue: addIssue,
-            getAllIssuesByProjectId: getAllIssuesByProjectId
+            getProjectIssuesById: getProjectIssuesById,
+            changeIssueStatus: changeIssueStatus
         };
     }
 ]);
-
-
-

@@ -1,9 +1,9 @@
 "use strict";
 
-var app = angular.module('IssueTrackingSystem', ['ngRoute', 'ngNotify', 'ui.bootstrap.pagination']);
+var app = angular.module('IssueTrackingSystem', ['ngRoute', 'ngNotify', 'ui.bootstrap.pagination', 'underscore']);
 
 app.constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/');
-app.constant('pageSize', 5);
+app.constant('pageSize', 10);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -17,24 +17,30 @@ app.config(['$routeProvider', function ($routeProvider) {
         })
         .when('/', {
             templateUrl: 'app/templates/dashboard.html',
-            controller: 'IssueController',
-            access: {
-                requiresLogin: true
-            }
+            controller: 'IssueController'
         })
         .when('/profile/password', {
             templateUrl: 'app/templates/change-password.html',
             controller: 'AuthenticationController'
         })
+        .when('/issues/:id', {
+            templateUrl: 'app/templates/issue.html',
+            controller: 'IssueController'
+        })
         .when('/projects/add-issue', {
-            templateUrl: 'app/templates/add-new-issue.html',
+            templateUrl: 'app/templates/issue.html',
             controller: 'IssueController'
         })
         .when('/projects', {
-
+            templateUrl: 'app/templates/all-projects.html',
+            controller: 'ProjectController'
+        })
+        .when('/projects/:id', {
+            templateUrl: 'app/templates/project.html',
+            controller: 'IssueController'
         })
         .when('/projects/add', {
-            templateUrl: 'app/templates/add-new-project.html',
+            templateUrl: 'app/templates/project.html',
             controller: 'ProjectController'
         })
         .otherwise({
