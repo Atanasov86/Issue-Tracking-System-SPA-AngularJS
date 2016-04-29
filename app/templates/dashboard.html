@@ -1,6 +1,6 @@
 <div class="jumbotron table table-striped table-hover">
     <h1>Dashboard</h1>
-    <div id="projects" ng-controller="ProjectController">
+    <div id="projects">
         <h2>Affiliated Projects</h2>
         <div>
             <ul>
@@ -23,9 +23,9 @@
             </thead>
             <tbody>
             <tr ng-repeat="issue in issues">
-                <td ng-click="viewIssue(issue.Id)">{{issue.Title}}</td>
+                <td class="hoverable" ng-click="viewIssue(issue.Id)">{{issue.Title}}</td>
                 <td>{{issue.Description}}</td>
-                <td ng-click="viewProject(issue.Project.Id)">{{issue.Project.Name}}</td>
+                <td class="hoverable" ng-click="viewProject(issue.Project.Id)">{{issue.Project.Name}}</td>
                 <td>{{issue.DueDate | date:'dd-MM-yyyy'}}</td>
             </tr>
             </tbody>

@@ -54,6 +54,8 @@ app.factory('projectService', [
         function getProjectById(projectId) {
             var deferred = $q.defer();
 
+            authService.setAuthHeaders();
+
             var serviceURL = BASE_URL + 'Projects/' + projectId;
 
             $http.get(serviceURL)

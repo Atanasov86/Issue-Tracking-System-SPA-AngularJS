@@ -11,14 +11,11 @@ app.controller('IssueController', [
     function ($scope, $location, $routeParams, issueService, notifyService, authService, pageSize) {
         $scope.pageStart = 1;
         $scope.pageSize = pageSize;
-
-        var currentUser = authService.getCurrentUser().username;
-
+        
         $scope.getCurrentUserIssues = function () {
             issueService.getCurrentUserIssues()
                 .then(function (response) {
-                    $scope.issues = response.data.Issues;
-                    console.log($scope.issues);
+                    $scope.issues = response.data.Issues;                    
                     $scope.AllIssues = response.data.TotalPages * $scope.pageSize;
 
                 }, function () {
@@ -35,7 +32,7 @@ app.controller('IssueController', [
             });
         };
 
-        $scope.getProjectIssuesById(14);
+
         $scope.getIssueById = function (issueId) {
             issueService.getIssueById(issueId)
                 .then(function (issueData) {
@@ -44,7 +41,7 @@ app.controller('IssueController', [
                     notifyService.error(error.Message);
                 });
         };
-        // console.log($scope.issueData);
+
         $scope.getIssueByGivenFilter = function () {
 
         };
@@ -86,7 +83,5 @@ app.controller('IssueController', [
 
             $location.path('/issues/' + issueId);
         };
-        // $scope.viewIssue(227);
-        console.log($scope.issueData);
     }
 ]);

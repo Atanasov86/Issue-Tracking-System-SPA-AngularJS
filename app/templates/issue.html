@@ -2,46 +2,40 @@
     <h2> Add new Issue</h2>
     <form ng-controller="IssueController">
         <div class="form-group">
-            <label for="exampleInputEmail1">Title</label>
-            <input ng-model="issueData.Project.Name" type="text" class="form-control" id="project-name" placeholder="Issue Title">
+            <label for="issue-title">Issue Title</label>
+            <input ng-disabled="{{isDisabled}}" ng-model="issueData.Project.Name" type="text" class="form-control"
+                   id="issue-title"/>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Assignee</label>
-            <select class="form-control">
-                <option>Kircho</option>
-                <option>Petkancho</option>
-            </select>
+            <label for="issue-assignee">Assignee</label>
+            <input type="text" ng-disabled="{{isDisabled}}" ng-model="issueData.Assignee.Username" class="form-control"
+                   id="issue-assignee"/>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Project</label>
-            <select class="form-control">
-                <option>SIT</option>
-                <option>Cart Management</option>
-            </select>
+            <label for="issue-project">Project</label>
+            <input type="text" ng-disabled="{{isDisabled}}" ng-model="issueData.Project.Name" class="form-control"
+                   id="issue-project"/>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Issue Key</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Issue Key">
+            <label for="issue-key">Issue Key</label>
+            <input type="text" ng-disabled="{{isDisabled}}" ng-model="issueData.IssueKey" class="form-control" id="issue-key"/>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Priority</label>
-            <select class="form-control">
-                <option>Urgent</option>
-                <option>Medium</option>
-            </select>
+            <label for="issue-priority">Priority</label>
+            <input type="text" ng-disabled="{{isDisabled}}" ng-model="issueData.Priority.Name" class="form-control" id="issue-priority"/>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Due Date</label>
-            <input type="date" class="form-control" id="exampleInputEmail1" placeholder="dd/mm/yyyy">
+            <label for="issue-date">Due Date</label>
+            <input type="date" ng-disabled="{{isDisabled}}" ng-model="issueDate" class="form-control" id="issue-date" />
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Labels (comma separated)</label>
-            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Labels" value="Soft">
+            <label for="issue-labels">Labels (comma separated)</label>
+            <input type="text" ng-disabled="{{isDisabled}}" ng-model="issueLabels" class="form-control" id="issue-labels" />
             <br>
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Description</label>
-            <textarea class="form-control" placeholder="Description"></textarea>
+            <label for="issue-description">Description</label>
+            <textarea class="form-control" ng-disabled="{{isDisabled}}" ng-model="issueData.Description" id="issue-description"></textarea>
         </div>
         <button type="submit" class="btn btn-add-issue btn-success">Add Issue</button>
         <a class="btn btn-add-issue btn-primary" href="#/">Cancel</a>

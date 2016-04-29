@@ -3,12 +3,14 @@
 app.controller('ProjectController', [
     '$scope',
     '$location',
+    '$routeParams',
     'notifyService',
     'projectService',
     'issueService',
     '_',
-    function ($scope, $location, notifyService, projectService, issueService, _) {
-        $scope.allUserProjects = [];
+    function ($scope, $location, $routeParams, notifyService, projectService, issueService, _) {
+
+        
 
         $scope.getAllProjects = function () {
             projectService.getAllProjects()
@@ -48,7 +50,7 @@ app.controller('ProjectController', [
                 }, function(error){
 
                 });
-        }
+        };
 
         $scope.getProjectsByLeadId();
         $scope.getAllProject();

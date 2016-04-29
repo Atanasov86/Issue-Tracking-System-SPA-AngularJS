@@ -25,7 +25,7 @@ app.config(['$routeProvider', function ($routeProvider) {
         })
         .when('/issues/:id', {
             templateUrl: 'app/templates/issue.html',
-            controller: 'IssueController'
+            controller: 'ViewIssueController'
         })
         .when('/projects/add-issue', {
             templateUrl: 'app/templates/issue.html',
@@ -34,10 +34,13 @@ app.config(['$routeProvider', function ($routeProvider) {
         .when('/projects', {
             templateUrl: 'app/templates/all-projects.html',
             controller: 'ProjectController'
-        })
+        })        
         .when('/projects/:id', {
             templateUrl: 'app/templates/project.html',
-            controller: 'IssueController'
+            controller: 'ViewProjectController'
+        })
+        .when('/project/:id/edit', {
+            templateUrl: 'app/templates/edit-project.html'
         })
         .when('/projects/add', {
             templateUrl: 'app/templates/project.html',
@@ -48,10 +51,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         });
 }]);
 
-app.run(function ($rootScope, $location, authService) {
-    $rootScope.$on('$locationChangeStart', function () {
-        if (!authService.isLoggedIn() && $location.path().indexOf('/register') === -1) {
-            $location.path('/login');
-        }
-    });
-});
+// app.run(function ($rootScope, $location, authService) {
+//     $rootScope.$on('$locationChangeStart', function () {
+//         if (!authService.isLoggedIn() && $location.path().indexOf('/register') === -1) {
+//             $location.path('/login');
+//         }
+//     });
+// });

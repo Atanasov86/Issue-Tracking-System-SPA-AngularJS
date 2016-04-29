@@ -60,6 +60,19 @@ li > span {
     padding: 10px 15px;
 }
 
+.hoverable {
+    cursor: pointer;
+}
+
+h2.project-title {
+    text-align: center;
+}
+
+.hoverable:hover {
+    color: #ebebeb;
+    text-decoration: underline;
+}
+
 #projects {
     width: 29%;
     border-radius: 10px;
@@ -90,6 +103,10 @@ li > span {
     display: inline-block;
 }
 
+td.issue-name, td.description {
+    width: 35%;
+}
+
 p {
     border: 1px solid #ebebeb;
     padding-top: 8px;
@@ -99,7 +116,3 @@ p {
 #app-footer h5 {
     text-align: center;
 }
-
-/*.table {*/
-    /*border: 1px solid #ebebeb;*/
-/*}*/
