@@ -3,20 +3,18 @@
 app.factory('issueService', [
     '$http',
     '$q',
-    'BASE_URL',
-    'pageSize',
+    'BASE_URL', 
     'authService',
-    function ($http, $q, BASE_URL, pageSize, authService) {
+    function ($http, $q, BASE_URL, authService) {
 
-        function getCurrentUserIssues() {
+        function getCurrentUserIssues(params) {
             var deferred = $q.defer();
 
             authService.setAuthHeaders();
 
-            var pageNumber = 1;
             var orderBy = 'DueDate desc';
 
-            var serviceURL = BASE_URL + '/issues/me?' + 'orderBy=' + orderBy + '&pageSize=' + pageSize + '&pageNumber=' + pageNumber;
+            var serviceURL = BASE_URL + '/issues/me?' + 'orderBy=' + orderBy + '&pageSize=' + params.pageSize + '&pageNumber=' + params.startPage;
 
             $http.get(serviceURL)
                 .then(function (response) {

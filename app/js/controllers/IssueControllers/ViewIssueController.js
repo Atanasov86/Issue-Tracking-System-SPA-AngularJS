@@ -14,7 +14,7 @@ app.controller('ViewIssueController', [
         $scope.isDisabled = true;
 
         $scope.isAdmin = authService.isAdmin();
-        console.log($scope.isAdmin);
+
 
         var currentUser = authService.getCurrentUser().username;
         
@@ -27,9 +27,10 @@ app.controller('ViewIssueController', [
                 $scope.issueLabels = _(issueData.Labels).map(function (l) {
                     return l.Name;
                 }).join(', ');
-                console.log(issueData);
+
                 $scope.isProjectLead = issueData.Author.Username === currentUser;
-                console.log($scope.isProjectLead);
+                console.log(issueData);
+                $scope.isAssignee = issueData.Assignee.Username === currentUser;
 
             }, function (error) {
                 notifyService.error(error.Message);

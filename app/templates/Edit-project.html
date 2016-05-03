@@ -1,86 +1,41 @@
-<div class=jumbotron style="height:1000px; padding-left: 10px;">
-    <h2 style="margin-top: 0"> Edit Project</h2>
+<div class="jumbotron">
+    <h2 class="center-title">Edit Project</h2>
     <div>
-        <form style="width:48%" class="pull-left">
+        <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Project Name" value="SIT">
+                <label for="project-name">Name</label>
+                <input type="text" ng-model="projectData.Name" class="form-control" id="project-name" placeholder="Project Name" />
             </div>
+
             <div class="form-group">
-                <label for="exampleInputEmail1">Leader</label>
-                <select class="form-control">
-                    <option>Pesho</option>
-                    <option>Gosho</option>
+                <label for="project-leader">Leader</label>
+                <select ng-model="projectData.Lead.Id" id="project-leader" class="form-control">
+                    <option ng-repeat="user in users | orderBy:'Username'" ng-selected="{{user.Username == projectData.Lead.Username}}" value="{{user.Id}}">{{user.Username}}</option>
                 </select>
             </div>
+
             <div class="form-group">
-                <label for="exampleInputEmail1">Project Key</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Project Key"
-                       value="123qwe">
+                <label for="project-key">Project Key</label>
+                <input type="text" ng-disabled="true" ng-model="projectData.ProjectKey" class="form-control" id="project-key" placeholder="Project Key" />
             </div>
+
             <div class="form-group">
-                <label for="exampleInputPassword1">Priorities (comma separated)</label>
-                <input type="text" class="form-control" id="exampleInputPassword1"
-                       placeholder="Available Priorities For The Issues" value="Low, Medium, Urgent">
+                <label for="project-priorities">Priorities (comma separated)</label>
+                <input type="text" ng-model="projectData.Priorities" class="form-control" id="project-priorities"
+                       placeholder="Available Priorities For The Issues" />
             </div>
+
             <div class="form-group">
-                <label for="exampleInputPassword1">Labels (comma separated)</label>
-                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Labels"
-                       value="Softuni, software">
+                <label for="project-labels">Labels (comma separated)</label>
+                <input type="text" ng-model="projectData.Labels" class="form-control" id="project-labels" placeholder="Labels" />
                 <br>
             </div>
+
             <div class="form-group">
-                <label for="exampleInputPassword1">Description</label>
-                <textarea class="form-control" placeholder="Description">Project for managing issues for specific projects with priorities, status transitions and labels</textarea>
+                <label for="description">Description</label>
+                <textarea class="form-control" ng-model="projectData.Description" id="description" placeholder="Description"></textarea>
             </div>
-            <button type="submit" class="btn btn-success">Edit Project</button>
-        </form>
-        <form style="width:48%" class="pull-right">
-            <h3>Status transition scheme</h3>
-            <ul id="statuses">
-                <li>Open
-                    <button class="btn btn-sm btn-info">add element</button>
-                    <button class="btn btn-sm btn-info">add child element</button>
-                </li>
-                <li>
-                    In Progress
-                    <button class="btn btn-sm btn-info">add element</button>
-                    <button class="btn btn-sm btn-info">add child element</button>
-                    <ul>
-                        <li>
-                            Closed
-                            <button class="btn btn-sm btn-info">add element</button>
-                            <button class="btn btn-sm btn-info">add child element</button>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    Resolved
-                    <button class="btn btn-sm btn-info">add element</button>
-                    <button class="btn btn-sm btn-info">add child element</button>
-                    <ul>
-                        <li>
-                            Closed
-                            <button class="btn btn-sm btn-info">add element</button>
-                            <button class="btn btn-sm btn-info">add child element</button>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            Reopened
-                            <button class="btn btn-sm btn-info">add element</button>
-                            <button class="btn btn-sm btn-info">add child element</button>
-                            <ul>
-                                <li>
-                                    Closed
-                                    <button class="btn btn-sm btn-info">add element</button>
-                                    <button class="btn btn-sm btn-info">add child element</button>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <button type="submit" class="btn btn-success" ng-click="editProject(projectData)">Edit Project</button>
         </form>
     </div>
 </div>

@@ -9,14 +9,17 @@ app.controller('IssueController', [
     'authService',
     'pageSize',
     function ($scope, $location, $routeParams, issueService, notifyService, authService, pageSize) {
-        $scope.pageStart = 1;
-        $scope.pageSize = pageSize;
-        
+        $scope.issueParams = {
+            'startPage': 1,
+            'pageSize': pageSize
+        };
+
+
         $scope.getCurrentUserIssues = function () {
-            issueService.getCurrentUserIssues()
+            issueService.getCurrentUserIssues($scope.issueParams)
                 .then(function (response) {
-                    $scope.issues = response.data.Issues;                    
-                    $scope.AllIssues = response.data.TotalPages * $scope.pageSize;
+                    $scope.issues = response.data.Issues;
+                    $scope.totalIssues = response.data.TotalCount;
 
                 }, function () {
                     notifyService.error('Cannot load issues.');

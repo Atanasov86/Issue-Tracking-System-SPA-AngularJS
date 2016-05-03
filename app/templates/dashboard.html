@@ -30,8 +30,8 @@
             </tr>
             </tbody>
         </table>
-        <pagination total-items="AllIssues" ng-model="pageStart"
-                    items-per-page="pageSize" ng-change="getCurrentUserIssues()"
+        <pagination total-items="totalIssues" ng-model="issueParams.startPage"
+                    items-per-page="issueParams.pageSize" ng-change="getCurrentUserIssues()"
                     max-size="9" boundary-links="true"
                     class="aligner">
         </pagination>

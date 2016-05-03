@@ -9,15 +9,13 @@ app.factory('projectService', [
     'notifyService',
     function ($http, $q, authService, BASE_URL, pageSize, notifyService) {
 
-        function getAllProjects() {
+        function getAllProjects(projectParams) {
             var deferred = $q.defer();
-
-            var pageNumber = 1;
 
             authService.setAuthHeaders();
 
             var serviceURL = BASE_URL + 'projects?' + 'filter=' + '&pageSize=' +
-                pageSize + '&pageNumber=' + pageNumber;
+                projectParams.pageSize + '&pageNumber=' + projectParams.startPage;
 
             $http.get(serviceURL)
                 .then(function (response) {
@@ -39,7 +37,7 @@ app.factory('projectService', [
             authService.setAuthHeaders();
 
             var serviceURL = BASE_URL + 'projects?' + 'filter=Lead.Id="' + leadId + '"&pageSize=' +
-                pageSize + '&pageNumber=' + pageNumber;            
+                pageSize + '&pageNumber=' + pageNumber;
 
             $http.get(serviceURL)
                 .then(function (response) {
@@ -81,7 +79,7 @@ app.factory('projectService', [
                 }, function(error){
                     deferred.reject(error);
                 });
-            
+
             return deferred.promise;
         }
 
@@ -98,7 +96,7 @@ app.factory('projectService', [
                 }, function(error){
                     deferred.reject(error);
                 });
-            
+
             return deferred.promise;
         }
 

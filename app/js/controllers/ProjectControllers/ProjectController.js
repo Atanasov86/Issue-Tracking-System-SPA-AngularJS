@@ -9,13 +9,16 @@ app.controller('ProjectController', [
     'issueService',
     '_',
     function ($scope, $location, $routeParams, notifyService, projectService, issueService, _) {
+        $scope.projectParams = {
+            'pageSize': 9,
+            'startPage': 1
+        };
 
         $scope.getAllProjects = function () {
-            projectService.getAllProjects()
+            projectService.getAllProjects($scope.projectParams)
                 .then(function (response) {
-                    $scope.allProjects = response.Projects;
-                    $scope.TotalProjects = response.TotalCount;
-                    console.log($scope.allProjects);
+                    $scope.projects = response.Projects;                    
+                    $scope.totalProjects = response.TotalCount;
                 }, function (error) {
                     notifyService.error('Cannot load projects...', error);
                 });

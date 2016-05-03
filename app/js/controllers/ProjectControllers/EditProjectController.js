@@ -28,7 +28,7 @@ app.controller('EditProjectController', [
 
         $scope.editProject = function (projectData) {
             var project = setProjectObject(projectData);
-            console.log(project);
+            
             projectService.editProjectById(project)
                 .then(function (data){
                     notifyService.success('Successfully edited project.');

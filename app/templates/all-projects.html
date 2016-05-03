@@ -5,13 +5,12 @@
             <input type="text" class="form-control" ng-model="search" placeholder="Search"/>
         </label>
     </div>
-    <div class="project" style="display: inline-block" ng-repeat="project in allProjects">
+    <div class="project" style="display: inline-block" ng-repeat="project in projects">
         <a href="#projects/{{project.Id}}">{{project.Name}}</a>
     </div>
     <div class="pagination-div">
-        <pagination ng-if="!search"
-                    total-items="totalProjects" ng-model="projectParams.startPage"
-                    items-per-page="projectParams.pageSize" ng-change="getProjects()"
+        <pagination total-items="totalProjects" ng-model="projectParams.startPage"
+                    items-per-page="projectParams.pageSize" ng-change="getAllProjects()"
                     max-size="9" boundary-links="true"
                     class="aligner">
         </pagination>
