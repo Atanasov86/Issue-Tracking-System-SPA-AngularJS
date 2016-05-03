@@ -101,11 +101,11 @@ app.factory('authService', [
         }
 
         function isAdmin() {
-            var currentUser = JSON.parse(sessionStorage.currentUser);
-            if(!currentUser) {
+            if(sessionStorage.currentUser === undefined) {
                 return false;
             }
-
+            var currentUser = JSON.parse(sessionStorage.currentUser);
+            
             return currentUser.isAdmin;
         }
 

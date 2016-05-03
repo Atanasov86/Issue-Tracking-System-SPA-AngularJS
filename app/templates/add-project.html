@@ -1,0 +1,36 @@
+<div class=jumbotron>
+    <h2 class="center-title"> Add New Project</h2>
+    <div>
+        <form>
+            <div class="form-group">
+                <label for="project-name">Project Name</label>
+                <input type="text" ng-model="projectData.Name" class="form-control" id="project-name" placeholder="Project Name" required/>
+            </div>
+            <div class="form-group">
+                <label for="project-leader">Leader</label>
+                <select ng-model="projectData.LeadId" id="project-leader" class="form-control">
+                    <option ng-repeat="user in users | orderBy:'Username'" value="{{user.Id}}">{{user.Username}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="project-key">Project Key</label>
+                <input type="text" ng-model="projectData.ProjectKey" class="form-control" id="project-key" placeholder="Project Key" required/>
+            </div>
+            <div class="form-group">
+                <label for="project-priorities">Priorities (comma separated)</label>
+                <input type="text" ng-model="projectData.Priorities" class="form-control" id="project-priorities"
+                       placeholder="Available Priorities For The Issues" />
+            </div>
+            <div class="form-group">
+                <label for="project-labels">Labels (comma separated)</label>
+                <input type="text" ng-model="projectData.Labels" class="form-control" id="project-labels" placeholder="Labels" />
+                <br>
+            </div>
+            <div class="form-group">
+                <label for="project-description">Description</label>
+                <textarea class="form-control" ng-model="projectData.Description" id="project-description" placeholder="Description" required></textarea>
+            </div>
+            <button ng-click="addNewProject(projectData)" type="submit" class="btn btn-success">Add Project</button>
+        </form>
+    </div>
+</div>

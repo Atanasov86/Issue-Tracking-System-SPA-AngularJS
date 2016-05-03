@@ -12,22 +12,24 @@ app.controller('ViewProjectController', [
     function ($scope, $location, $routeParams, notifyService, authService, projectService, issueService, _) {
 
         $scope.isDisabled = true;
+        
+        $scope.isAdmin = authService.isAdmin();
 
         var currentUser = authService.getCurrentUser().username;
 
         projectService.getProjectById($routeParams.id)
             .then(function (projectData) {
-                $scope.projectData = projectData.data;
+                $scope.projectData = projectData;
 
-                $scope.projectPriorities = _(projectData.data.Priorities).map(function (c) {
+                $scope.projectPriorities = _(projectData.Priorities).map(function (c) {
                     return c.Name;
                 }).join(', ');
 
-                $scope.projectLabels = _(projectData.data.Labels).map(function (l) {
+                $scope.projectLabels = _(projectData.Labels).map(function (l) {
                     return l.Name;
                 }).join(', ');
 
-                $scope.isProjectLead = currentUser === projectData.data.Lead.Username;
+                $scope.isProjectLead = currentUser === projectData.Lead.Username;
 
             }, function (error) {
                 notifyService.error(error.Message);

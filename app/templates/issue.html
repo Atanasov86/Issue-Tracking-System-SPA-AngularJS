@@ -1,9 +1,9 @@
 <div class=jumbotron>
-    <h2> Add new Issue</h2>
+    <h2 class="center-title">Issues</h2>
     <form ng-controller="IssueController">
         <div class="form-group">
             <label for="issue-title">Issue Title</label>
-            <input ng-disabled="{{isDisabled}}" ng-model="issueData.Project.Name" type="text" class="form-control"
+            <input ng-disabled="{{isDisabled}}" ng-model="issueData.Title" type="text" class="form-control"
                    id="issue-title"/>
         </div>
         <div class="form-group">
@@ -37,7 +37,7 @@
             <label for="issue-description">Description</label>
             <textarea class="form-control" ng-disabled="{{isDisabled}}" ng-model="issueData.Description" id="issue-description"></textarea>
         </div>
-        <button type="submit" class="btn btn-add-issue btn-success">Add Issue</button>
+        <button type="submit" ng-if="isProjectLead || isAdmin" class="btn btn-add-issue btn-success">Edit Issue</button>
         <a class="btn btn-add-issue btn-primary" href="#/">Cancel</a>
     </form>
 </div>

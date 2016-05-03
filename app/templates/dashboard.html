@@ -2,9 +2,9 @@
     <h1>Dashboard</h1>
     <div id="projects">
         <h2>Affiliated Projects</h2>
-        <div>
+        <div ng-controller="ProjectController">
             <ul>
-                <li ng-repeat="project in projects.Projects">
+                <li ng-repeat="project in allUserProjects.Projects">
                     <span class="glyphicon glyphicon-triangle-right"></span>
                     <a href="">{{project.Name}}</a>
                 </li>
@@ -15,10 +15,10 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <td>Issue</td>
-                <td>Description</td>
-                <td>Project</td>
-                <td>Due Date</td>
+                <th>Issue</th>
+                <th>Description</th>
+                <th>Project</th>
+                <th>Due Date</th>
             </tr>
             </thead>
             <tbody>
@@ -39,7 +39,7 @@
 
     <div ng-if="authService.isAdmin()">
         <a class="btn btn-lg btn-success btn-add-project" href="#/projects/add">Add New Project</a>
-        <a class="btn btn-lg btn-success btn-add-issue" href="#/projects/add-issue">Add New Issue</a>
+        <a class="btn btn-lg btn-success btn-add-issue" href="#/projects">Projects</a>
     </div>
 
 

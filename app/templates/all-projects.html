@@ -2,17 +2,19 @@
     <h1>All Projects</h1>
     <div class="search">
         <label>
-            Search: <input type="text" ng-model="search"/>
+            <input type="text" class="form-control" ng-model="search" placeholder="Search"/>
         </label>
     </div>
-    <div ng-repeat="project in allProjects">
+    <div class="project" style="display: inline-block" ng-repeat="project in allProjects">
         <a href="#projects/{{project.Id}}">{{project.Name}}</a>
     </div>
+    <div class="pagination-div">
+        <pagination ng-if="!search"
+                    total-items="totalProjects" ng-model="projectParams.startPage"
+                    items-per-page="projectParams.pageSize" ng-change="getProjects()"
+                    max-size="9" boundary-links="true"
+                    class="aligner">
+        </pagination>
+    </div>
 
-    <pagination ng-if="!search"
-                total-items="totalProjects" ng-model="projectParams.startPage"
-                items-per-page="projectParams.pageSize" ng-change="getProjects()"
-                max-size="9" boundary-links="true"
-                class="aligner">
-    </pagination>
 </div>

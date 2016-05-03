@@ -74,13 +74,6 @@ app.controller('IssueController', [
         };
 
         $scope.viewIssue = function (issueId) {
-            // issueService.getIssueById(issueId)
-            //     .then(function (issueData) {
-            //         $scope.issueData = issueData.data;
-            //
-            //
-            //     });
-
             $location.path('/issues/' + issueId);
         };
     }

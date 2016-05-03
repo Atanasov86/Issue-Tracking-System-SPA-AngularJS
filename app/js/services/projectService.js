@@ -16,12 +16,12 @@ app.factory('projectService', [
 
             authService.setAuthHeaders();
 
-            var serviceURL = BASE_URL + 'projects?' + 'filter=Lead.Id=' + '&pageSize=' +
+            var serviceURL = BASE_URL + 'projects?' + 'filter=' + '&pageSize=' +
                 pageSize + '&pageNumber=' + pageNumber;
 
             $http.get(serviceURL)
                 .then(function (response) {
-                    deferred.resolve(response);
+                    deferred.resolve(response.data);
                 }, function () {
                     notifyService.error('Cannot load projects');
                 });
@@ -60,7 +60,7 @@ app.factory('projectService', [
 
             $http.get(serviceURL)
                 .then(function(response){
-                    deferred.resolve(response);
+                    deferred.resolve(response.data);
                 }, function (error) {
                     deferred.reject(error);
                 });
@@ -68,12 +68,12 @@ app.factory('projectService', [
             return deferred.promise;
         }
 
-
-
         function addNewProject(project) {
             var deferred = $q.defer();
 
-            var serviceURL = BASE_URL + 'Projects';            
+            var serviceURL = BASE_URL + 'Projects';
+
+            authService.setAuthHeaders();
 
             $http.post(serviceURL, project)
                 .then(function (response) {
@@ -81,20 +81,25 @@ app.factory('projectService', [
                 }, function(error){
                     deferred.reject(error);
                 });
+            
+            return deferred.promise;
         }
 
         function editProjectById(project) {
             var deferred = $q.defer();
 
-            var serviceURL = BASE_URL + 'Projects' + project.Id;
+            var serviceURL = BASE_URL + 'Projects/' + project.Id;
 
+            authService.setAuthHeaders();
 
             $http.put(serviceURL, project)
                 .then(function (response) {
-                    deferred.resolve(response);
+                    deferred.resolve(response.data);
                 }, function(error){
                     deferred.reject(error);
                 });
+            
+            return deferred.promise;
         }
 
         return {

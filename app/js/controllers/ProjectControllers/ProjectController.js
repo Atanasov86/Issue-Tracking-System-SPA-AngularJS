@@ -10,8 +10,6 @@ app.controller('ProjectController', [
     '_',
     function ($scope, $location, $routeParams, notifyService, projectService, issueService, _) {
 
-        
-
         $scope.getAllProjects = function () {
             projectService.getAllProjects()
                 .then(function (response) {
@@ -26,9 +24,9 @@ app.controller('ProjectController', [
         $scope.getProjectsByLeadId = function () {
             projectService.getProjectsByLeadId()
                 .then(function (response) {
-                    $scope.allUserProjects.push(response.data);
-                    console.log($scope.projects);
-                }, function(error){
+                    $scope.allUserProjects = response.data;
+                    console.log($scope.allUserProjects);
+                }, function(){
                     notifyService.error('Cannot load projects.');
                 });
         };
@@ -43,17 +41,7 @@ app.controller('ProjectController', [
                 });
         };
 
-        $scope.addNewProject = function (project){
-            projectService.addNewProject(project)
-                .then(function(){
-
-                }, function(error){
-
-                });
-        };
-
         $scope.getProjectsByLeadId();
-        $scope.getAllProject();
-        //console.log($scope.allUserProjects);
+        $scope.getAllProjects();
     }
 ]);

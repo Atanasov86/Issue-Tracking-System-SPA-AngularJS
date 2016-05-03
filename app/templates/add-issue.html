@@ -1,5 +1,5 @@
 <div class=jumbotron>
-    <h2 class="center-title">Edit Issue</h2>
+    <h2 class="center-title">Add Issue</h2>
     <div>
         <form>
             <div class="form-group">
@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label for="issue-key">Issue Key</label>
-                <input type="text" class="form-control" id="issue-key" placeholder="Issue Key" value="135hk3">
+                <input type="text" class="form-control" id="issue-key" placeholder="Issue Key" required>
             </div>
             <div class="form-group">
                 <label for="issue-priority">Priority</label>
@@ -48,41 +48,7 @@
                 <textarea id="issue-description" class="form-control"
                           placeholder="Description">Add more information when throwing a BadRequest</textarea>
             </div>
-            <button type="submit" class="btn btn-success">Edit Issue</button>
-        </form>
-        <form style="width:48%" class="pull-right">
-            <h3>Status transition scheme</h3>
-            <ul id="statuses">
-                <li><strong>Open</strong></li>
-                <li>
-                    In Progress
-                    <button class="btn btn-sm btn-info">transition to status</button>
-                    <ul>
-                        <li>
-                            Closed
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    Resolved
-                    <button class="btn btn-sm btn-info">transition to status</button>
-                    <ul>
-                        <li>
-                            Closed
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            Reopened
-                            <ul>
-                                <li>
-                                    Closed
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <button type="submit" ng-click="addNewIssue(issueData)" class="btn btn-success">Add Issue</button>
         </form>
     </div>
 </div>

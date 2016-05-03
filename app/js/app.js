@@ -1,9 +1,15 @@
 "use strict";
 
-var app = angular.module('IssueTrackingSystem', ['ngRoute', 'ngNotify', 'ui.bootstrap.pagination', 'underscore']);
+var app = angular.module('IssueTrackingSystem', [
+    'ngRoute',
+    'ngNotify',
+    'ui.bootstrap.pagination',
+    'underscore',
+    'localytics.directives',
+    'angular-loading-bar']);
 
 app.constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/');
-app.constant('pageSize', 10);
+app.constant('pageSize', 5);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -27,34 +33,39 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'app/templates/issue.html',
             controller: 'ViewIssueController'
         })
-        .when('/projects/add-issue', {
-            templateUrl: 'app/templates/issue.html',
+        .when('/issues/:id/edit', {
+            templateUrl: 'app/templates/edit-issue.html',
+            controller: 'EditIssueController'
+        })
+        .when('/projects/:id/add-issue', {
+            templateUrl: 'app/templates/add-issue.html',
             controller: 'IssueController'
         })
         .when('/projects', {
             templateUrl: 'app/templates/all-projects.html',
             controller: 'ProjectController'
-        })        
+        })
+        .when('/projects/add', {
+            templateUrl: 'app/templates/add-project.html',
+            controller: 'AddProjectController'
+        })
         .when('/projects/:id', {
             templateUrl: 'app/templates/project.html',
             controller: 'ViewProjectController'
         })
-        .when('/project/:id/edit', {
-            templateUrl: 'app/templates/edit-project.html'
-        })
-        .when('/projects/add', {
-            templateUrl: 'app/templates/project.html',
-            controller: 'ProjectController'
+        .when('/projects/:id/edit', {
+            templateUrl: 'app/templates/edit-project.html',
+            controller: 'EditProjectController'
         })
         .otherwise({
             redirectTo: '/login'
         });
 }]);
 
-// app.run(function ($rootScope, $location, authService) {
-//     $rootScope.$on('$locationChangeStart', function () {
-//         if (!authService.isLoggedIn() && $location.path().indexOf('/register') === -1) {
-//             $location.path('/login');
-//         }
-//     });
-// });
+app.run(function ($rootScope, $location, authService) {
+    $rootScope.$on('$locationChangeStart', function () {
+        if (!authService.isLoggedIn() && $location.path().indexOf('/register') === -1) {
+            $location.path('/login');
+        }
+    });
+});

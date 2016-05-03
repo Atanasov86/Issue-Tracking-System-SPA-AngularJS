@@ -6,9 +6,11 @@
     <title>SoftUni Issue Tracking System</title>
     <meta name="description" content="Issue Tracking System">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="app/images/favicon-16x16.png">
     <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/superhero-theme.min.css">
     <link rel="stylesheet" href="app/bower_components/ng-notify/dist/ng-notify.min.css">
+    <link rel="stylesheet" href="app/bower_components/angular-loading-bar/build/loading-bar.css">
     <link rel="stylesheet" href="app/css/app.css">
 
 </head>
@@ -17,9 +19,14 @@
     <div ng-include="'app/templates/partial/header.html'"></div>
 </header>
 
-<div class="container" ng-cloak>
+<div class="container">
     <div ng-view>
-
+        <div class="jumbotron">
+            <img src="app/images/softuni-code-wizard.png" alt="wizard-logo"/>
+            <h1>Welcome to SoftUni Issue Tracking System</h1>
+            <a class="btn btn-add-issue btn-success" href="#/login">Login</a>
+            <a class="btn btn-add-issue btn-primary" href="#/register">Register</a>
+        </div>
     </div>
 </div>
 
@@ -32,7 +39,8 @@
 <script src="app/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="app/bower_components/angular/angular.js"></script>
 <script src="app/bower_components/angular-route/angular-route.js"></script>
-<script src="app/bower_components/ngstorage/ngStorage.min.js"></script>
+<script src="app/bower_components/angular-chosen-localytics/dist/angular-chosen.js"></script>
+<script src="app/bower_components/angular-loading-bar/build/loading-bar.js"></script>
 <script src="app/bower_components/angular-underscore-module/angular-underscore-module.js"></script>
 <script src="app/bower_components/ui.bootstrap/ui.bootstrap.pagination-0.12.0.js"></script>
 <script src="app/bower_components/ng-notify/dist/ng-notify.min.js"></script>
@@ -44,12 +52,20 @@
 <script src="app/js/services/notifyService.js"></script>
 <script src="app/js/services/issueService.js"></script>
 <script src="app/js/services/projectService.js"></script>
+<script src="app/js/services/userService.js"></script>
 
 <script src="app/js/controllers/AuthenticationController.js"></script>
+
 <script src="app/js/controllers/IssueControllers/IssueController.js"></script>
 <script src="app/js/controllers/IssueControllers/ViewIssueController.js"></script>
+<script src="app/js/controllers/IssueControllers/AddIssueController.js"></script>
+<script src="app/js/controllers/IssueControllers/EditIssueController.js"></script>
+
+
 <script src="app/js/controllers/ProjectControllers/ProjectController.js"></script>
 <script src="app/js/controllers/ProjectControllers/ViewProjectController.js"></script>
+<script src="app/js/controllers/ProjectControllers/AddProjectController.js"></script>
+<script src="app/js/controllers/ProjectControllers/EditProjectController.js"></script>
 
 
 </body>

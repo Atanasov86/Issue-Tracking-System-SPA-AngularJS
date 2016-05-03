@@ -37,7 +37,7 @@ app.factory('issueService', [
 
             $http.get(serviceURL)
                 .then(function (response) {
-                    deferred.resolve(response);
+                    deferred.resolve(response.data);
                 }, function (error) {
                     deferred.reject(error);
                 });
