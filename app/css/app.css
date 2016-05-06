@@ -14,6 +14,15 @@ body {
     margin-top: 20px;
 }
 
+.welcome-buttons {
+    margin: 40px 20px;
+    text-align: center;
+}
+
+.welcome-buttons > a {
+    margin-left: 10px;
+}
+
 .btn-add-project, .btn-add-issue {
     width: 200px;
 }

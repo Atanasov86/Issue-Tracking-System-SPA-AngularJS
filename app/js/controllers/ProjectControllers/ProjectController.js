@@ -27,8 +27,7 @@ app.controller('ProjectController', [
         $scope.getProjectsByLeadId = function () {
             projectService.getProjectsByLeadId()
                 .then(function (response) {
-                    $scope.allUserProjects = response.data;
-                    console.log($scope.allUserProjects);
+                    $scope.allUserProjects = response.data;                    
                 }, function(){
                     notifyService.error('Cannot load projects.');
                 });

@@ -1,5 +1,5 @@
 <div class=jumbotron>
-    <h2 class="center-title">Issues</h2>
+    <h2 class="center-title">Issue "{{issueData.Title}}"</h2>
     <form ng-controller="IssueController">
         <div class="form-group">
             <label for="issue-title">Issue Title</label>
@@ -37,7 +37,7 @@
             <label for="issue-description">Description</label>
             <textarea class="form-control" ng-disabled="{{isDisabled}}" ng-model="issueData.Description" id="issue-description"></textarea>
         </div>
-        <a type="submit" ng-if="isProjectLead || isAdmin || isAssignee" href="#/issues/{{issueData.Id}}/edit" class="btn btn-add-issue btn-success">Edit Issue</a>
-        <a class="btn btn-add-issue btn-primary" href="#/">Cancel</a>
+        <a type="submit" ng-if="isProjectLead || isAdmin" href="#/issues/{{issueData.Id}}/edit" class="btn btn-add-issue btn-success">Edit Issue</a>
+        <a class="btn btn-add-issue btn-info" href="#/">Back</a>
     </form>
 </div>

@@ -1,0 +1,7 @@
+<div ng-if="!authService.isLoggedIn()">
+    <div ng-include="'app/templates/welcome/welcome.html'"></div>
+</div>
+
+<div ng-if="authService.isLoggedIn()">
+    <div ng-include="'app/templates/dashboard.html'"></div>
+</div>

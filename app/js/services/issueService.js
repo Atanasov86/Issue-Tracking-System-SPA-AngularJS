@@ -77,6 +77,23 @@ app.factory('issueService', [
             return deferred.promise;
         }
 
+        function editIssue(issue){
+            var deferred = $q.defer();
+
+            authService.setAuthHeaders();
+
+            var serviceURL = BASE_URL + 'Issues/' + issue.Id;
+
+            $http.put(serviceURL, issue)
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                }, function (error) {
+                    deferred.reject(error);
+                });
+
+            return deferred.promise;
+        }
+
         function changeIssueStatus(issueId, statusId) {
             var deferred = $q.defer();
 
@@ -100,6 +117,7 @@ app.factory('issueService', [
             getCurrentUserIssues: getCurrentUserIssues,
             getIssueById: getIssueById,
             addIssue: addIssue,
+            editIssue: editIssue,
             getProjectIssuesById: getProjectIssuesById,
             changeIssueStatus: changeIssueStatus
         };

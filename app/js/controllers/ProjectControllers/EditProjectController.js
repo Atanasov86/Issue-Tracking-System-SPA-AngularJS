@@ -6,9 +6,12 @@ app.controller('EditProjectController', [
     '$routeParams',
     'projectService',
     'userService',
+    'authService',
     'notifyService',
     '_',
-    function ($scope, $location, $routeParams, projectService, userService, notifyService, _) {
+    function ($scope, $location, $routeParams, projectService, userService, authService, notifyService, _) {
+
+        $scope.isAdmin = authService.isAdmin();
 
         userService.getAllUsers()
             .then(function (response) {

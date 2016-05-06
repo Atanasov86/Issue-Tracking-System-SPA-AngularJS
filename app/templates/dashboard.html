@@ -1,4 +1,4 @@
-<div class="jumbotron table table-striped table-hover">
+<div ng-controller="IssueController" class="jumbotron table table-striped table-hover">
     <h1>Dashboard</h1>
     <div id="projects">
         <h2>Affiliated Projects</h2>
@@ -39,8 +39,6 @@
 
     <div ng-if="authService.isAdmin()">
         <a class="btn btn-lg btn-success btn-add-project" href="#/projects/add">Add New Project</a>
-        <a class="btn btn-lg btn-success btn-add-issue" href="#/projects">Projects</a>
+        <a class="btn btn-lg btn-success btn-add-issue" href="#/projects/add-issue">Add New Issue</a>
     </div>
-
-
 </div>

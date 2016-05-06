@@ -1,88 +1,49 @@
 <div class=jumbotron>
-    <h2 class="center-title">Edit Issue</h2>
+    <h2 class="center-title">Edit Issue {{issueData.Title}}</h2>
     <div>
         <form>
             <div class="form-group">
                 <label for="issue-title">Title</label>
-                <input type="text" class="form-control" id="issue-title" placeholder="Issue Title"
-                       value="Bad Request has no message describing the problem  ">
+                <input type="text" ng-disabled="!(isAdmin || isProjectLead)" ng-model="issueData.Title" class="form-control" id="issue-title" placeholder="Issue Title" >
             </div>
             <div class="form-group">
                 <label for="issue-assignee">Assignee</label>
-                <select id="issue-assignee" class="form-control">
-                    <option>Kircho</option>
-                    <option>Petkancho</option>
+                <select ng-model="issueData.Assignee.Id" ng-disabled="!(isAdmin || isProjectLead)" id="issue-assignee" class="form-control">
+                    <option  ng-repeat="user in users | orderBy:'Username'" ng-selected="{{issueData.Assignee.Id == user.Id}}" value="{{user.Id}}">{{user.Username}}</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="issue-project">Project</label>
-                <select id="issue-project" class="form-control">
-                    <option>SIT</option>
-                    <option>Cart Management</option>
-                </select>
+                <label for="project-name">Project</label>
+                <input ng-disabled="true" type="text" ng-model="issueData.Project.Name" class="form-control" id="project-name" placeholder="Project Name" />
             </div>
-            <div class="form-group">
-                <label for="issue-key">Issue Key</label>
-                <input type="text" class="form-control" id="issue-key" placeholder="Issue Key" value="135hk3">
-            </div>
+
             <div class="form-group">
                 <label for="issue-priority">Priority</label>
-                <select id="issue-priority" class="form-control">
-                    <option>Urgent</option>
-                    <option>Medium</option>
+                <select ng-model="issueData.Priority.Id" ng-disabled="!(isAdmin || isProjectLead)" id="issue-priority" class="form-control">
+                    <option ng-selected="{{priority.Id === issueData.Priority.Id}}" ng-repeat="priority in priorities" value="{{priority.Id}}">{{priority.Name}}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="issue-date">Due Date</label>
-                <input type="date" class="form-control" id="issue-date" placeholder="dd/mm/yyyy"
-                       value="28/03/2016">
+                <input type="date" ng-disabled="!(isAdmin || isProjectLead)" ng-model="issueData.DueDate" class="form-control" id="issue-date" placeholder="dd/mm/yyyy" />
             </div>
             <div class="form-group">
                 <label for="issue-labels">Labels (comma separated)</label>
-                <input type="text" class="form-control" id="issue-labels" placeholder="Labels"
-                       value="Softuni, software">
+                <input ng-disabled="!(isAdmin || isProjectLead)" ng-model="issueData.LabelsAsString" type="text" class="form-control" id="issue-labels" placeholder="Labels" />
                 <br>
             </div>
             <div class="form-group">
                 <label for="issue-description">Description</label>
-                <textarea id="issue-description" class="form-control"
-                          placeholder="Description">Add more information when throwing a BadRequest</textarea>
+                <textarea ng-disabled="!(isAdmin || isProjectLead)" ng-model="issueData.Description" id="issue-description" class="form-control"
+                          placeholder="Description"></textarea>
             </div>
-            <button type="submit" class="btn btn-success">Edit Issue</button>
+            <button type="submit" ng-click="editIssue(issueData)" class="btn btn-success btn-add-issue">Save</button>
+            <a class="btn btn-info btn-add-issue" href="#/issues/{{issueData.Id}}">Back</a>
         </form>
-        <form style="width:48%" class="pull-right">
+        <form>
             <h3>Status transition scheme</h3>
-            <ul id="statuses">
-                <li><strong>Open</strong></li>
-                <li>
-                    In Progress
-                    <button class="btn btn-sm btn-info">transition to status</button>
-                    <ul>
-                        <li>
-                            Closed
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    Resolved
-                    <button class="btn btn-sm btn-info">transition to status</button>
-                    <ul>
-                        <li>
-                            Closed
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            Reopened
-                            <ul>
-                                <li>
-                                    Closed
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <span>Current Status: <strong>{{issueData.Status.Name}}</strong></span>
+
         </form>
     </div>
 </div>

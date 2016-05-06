@@ -45,33 +45,6 @@ app.controller('IssueController', [
                 });
         };
 
-        $scope.getIssueByGivenFilter = function () {
-
-        };
-
-        $scope.addNewIssue = function (issue) {
-
-        };
-
-        $scope.editIssue = function (issue) {
-
-        };
-
-        $scope.changeIssueLabelStatus = function (issueId) {
-
-        };
-
-        $scope.getAllIssueComment = function (issueId) {
-
-        };
-
-        $scope.addNewIssueComment = function () {
-
-        };
-
-        $scope.getCurrentUserIssues();
-
-
         $scope.viewProject = function (projectId) {
             $location.path('/projects/' + projectId);
         };
@@ -79,5 +52,7 @@ app.controller('IssueController', [
         $scope.viewIssue = function (issueId) {
             $location.path('/issues/' + issueId);
         };
+
+        $scope.getCurrentUserIssues();
     }
 ]);

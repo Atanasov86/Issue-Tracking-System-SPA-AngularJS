@@ -35,7 +35,8 @@
                 <label for="description">Description</label>
                 <textarea class="form-control" ng-model="projectData.Description" id="description" placeholder="Description"></textarea>
             </div>
-            <button type="submit" class="btn btn-success" ng-click="editProject(projectData)">Edit Project</button>
+            <button type="submit" class="btn btn-success btn-add-project" ng-click="editProject(projectData)">Save</button>
+            <a class="btn btn-info btn-add-project" href="#/projects/{{projectData.Id}}">Back</a>
         </form>
     </div>
 </div>

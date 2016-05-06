@@ -22,7 +22,8 @@ app.controller('AuthenticationController', [
         $scope.register = function (user) {
             authService.register(user)
                 .then(function () {
-                    notifyService.success("Register successfully.");
+                    notifyService.success("Register successfully.");                    
+                    $location.path('/');
                 }, function (error) {
                     notifyService.error(error.data.ModelState[''][0]);
                 });

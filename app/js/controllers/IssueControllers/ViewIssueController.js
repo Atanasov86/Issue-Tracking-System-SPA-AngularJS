@@ -15,7 +15,6 @@ app.controller('ViewIssueController', [
 
         $scope.isAdmin = authService.isAdmin();
 
-
         var currentUser = authService.getCurrentUser().username;
         
         issueService.getIssueById($routeParams.id)
@@ -28,8 +27,13 @@ app.controller('ViewIssueController', [
                     return l.Name;
                 }).join(', ');
 
-                $scope.isProjectLead = issueData.Author.Username === currentUser;
-                console.log(issueData);
+                projectService.getProjectById(issueData.Project.Id)
+                    .then(function (projectData) {
+                        $scope.isProjectLead = projectData.Lead.Username === currentUser;
+                    }, function error(err) {
+                        notifyService.error("Failed loading data...", err);
+                    });
+
                 $scope.isAssignee = issueData.Assignee.Username === currentUser;
 
             }, function (error) {

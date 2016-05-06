@@ -9,13 +9,12 @@ app.factory('projectService', [
     'notifyService',
     function ($http, $q, authService, BASE_URL, pageSize, notifyService) {
 
-        function getAllProjects(projectParams) {
+        function getAllProjects() {
             var deferred = $q.defer();
 
             authService.setAuthHeaders();
 
-            var serviceURL = BASE_URL + 'projects?' + 'filter=' + '&pageSize=' +
-                projectParams.pageSize + '&pageNumber=' + projectParams.startPage;
+            var serviceURL = BASE_URL + 'projects';
 
             $http.get(serviceURL)
                 .then(function (response) {
@@ -75,7 +74,7 @@ app.factory('projectService', [
 
             $http.post(serviceURL, project)
                 .then(function (response) {
-                    deferred.resolve(response);
+                    deferred.resolve(response.data);
                 }, function(error){
                     deferred.reject(error);
                 });

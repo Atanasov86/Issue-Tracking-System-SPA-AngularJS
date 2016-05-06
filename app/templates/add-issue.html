@@ -4,51 +4,42 @@
         <form>
             <div class="form-group">
                 <label for="issue-title">Title</label>
-                <input type="text" class="form-control" id="issue-title" placeholder="Issue Title"
-                       value="Bad Request has no message describing the problem  ">
+                <input type="text" ng-model="issueData.Title" class="form-control" id="issue-title" placeholder="Issue Title" />
             </div>
             <div class="form-group">
                 <label for="issue-assignee">Assignee</label>
-                <select id="issue-assignee" class="form-control">
-                    <option>Kircho</option>
-                    <option>Petkancho</option>
+                <select ng-model="issueData.AssigneeId" id="issue-assignee" class="form-control" required>
+                    <option ng-repeat="user in users | orderBy:'Username'" value="{{user.Id}}">{{user.Username}}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="issue-project">Project</label>
-                <select id="issue-project" class="form-control">
-                    <option>SIT</option>
-                    <option>Cart Management</option>
-                </select>
+                <input type="text" class="form-control" id="issue-project" ng-disabled="true" ng-model="project.Name" value="{{project.Id}}" required/>
             </div>
-            <div class="form-group">
-                <label for="issue-key">Issue Key</label>
-                <input type="text" class="form-control" id="issue-key" placeholder="Issue Key" required>
-            </div>
-            <div class="form-group">
-                <label for="issue-priority">Priority</label>
-                <select id="issue-priority" class="form-control">
-                    <option>Urgent</option>
-                    <option>Medium</option>
-                </select>
-            </div>
+
             <div class="form-group">
                 <label for="issue-date">Due Date</label>
-                <input type="date" class="form-control" id="issue-date" placeholder="dd/mm/yyyy"
-                       value="28/03/2016">
+                <input type="date" ng-model="issueData.DueDate" class="form-control" id="issue-date" placeholder="dd/mm/yyyy" required/>
             </div>
+
+            <div class="form-group">
+                <label for="issue-priority">Priority</label>
+                <select ng-model="issueData.PriorityId " id="issue-priority" class="form-control">
+                    <option ng-repeat="priority in priorities" value={{priority.Id}}>{{priority.Name}}</option>
+                </select>
+            </div>
+
             <div class="form-group">
                 <label for="issue-labels">Labels (comma separated)</label>
-                <input type="text" class="form-control" id="issue-labels" placeholder="Labels"
-                       value="Softuni, software">
+                <input type="text" ng-model="issueData.Labels" class="form-control" id="issue-labels" placeholder="Labels" />
                 <br>
             </div>
             <div class="form-group">
                 <label for="issue-description">Description</label>
-                <textarea id="issue-description" class="form-control"
-                          placeholder="Description">Add more information when throwing a BadRequest</textarea>
+                <textarea id="issue-description" ng-model="issueData.Description" class="form-control" placeholder="Description"></textarea>
             </div>
             <button type="submit" ng-click="addNewIssue(issueData)" class="btn btn-success">Add Issue</button>
+            <a class="btn btn-info" href="#/projects/{{project.Id}}">Cancel</a>
         </form>
     </div>
 </div>

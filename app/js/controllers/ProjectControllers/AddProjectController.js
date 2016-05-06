@@ -23,9 +23,8 @@ app.controller('AddProjectController', [
 
             projectService.addNewProject(project)
                 .then(function (response) {
-                    notifyService.success('Project successfully created.');
-                    $location.path('/projects/:id/add-issue');
-                    console.log(response);
+                    notifyService.success('Project successfully created.');                    
+                    $location.path('projects/' + response.Id);
                 }, function (error) {
                     notifyService.error('Failed to add project!', error);
                 });

@@ -14,6 +14,7 @@ app.factory('authService', [
 
             $http.post(serviceURL, user)
                 .then(function (response) {
+                    login(user);
                     deferred.resolve(response);
                 }, function (error) {
                     deferred.reject(error);
@@ -25,8 +26,12 @@ app.factory('authService', [
         function login(user) {
             user.grant_type = 'password';
 
+            if(user.Email){
+                user.Username = user.Email;
+                delete user.Email;
+                delete user.ConfirmPassword;
+            }
             var deferred = $q.defer();
-
 
             var serviceURL = BASE_URL + 'api/Token';
 
@@ -90,7 +95,7 @@ app.factory('authService', [
         }
 
         function isLoggedIn() {
-            return sessionStorage.currentUser !== undefined;
+            return !!sessionStorage.currentUser;
         }
 
         function getCurrentUser() {
@@ -105,7 +110,7 @@ app.factory('authService', [
                 return false;
             }
             var currentUser = JSON.parse(sessionStorage.currentUser);
-            
+
             return currentUser.isAdmin;
         }
 
