@@ -19,7 +19,6 @@ app.controller('AddIssueController', [
 
         projectService.getAllProjects()
             .then(function(projects){
-                console.log(projects);
                 $scope.projects = projects;
             }, function(error){
                 notifyService.error('Failed to load projects', error);
@@ -30,7 +29,8 @@ app.controller('AddIssueController', [
 
             issueService.addIssue(issueData)
                 .then(function (response) {
-                    console.log(response);
+                    notifyService.success('Successfully added issue.');
+                    $location.path('project/' + )
                 }, function (error) {
                     console.log(error);
                 });
