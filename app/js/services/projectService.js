@@ -36,7 +36,7 @@ app.factory('projectService', [
             authService.setAuthHeaders();
 
             var serviceURL = BASE_URL + 'projects?' + 'filter=Lead.Id="' + leadId + '"&pageSize=' +
-                pageSize + '&pageNumber=' + pageNumber;
+                300 + '&pageNumber=' + pageNumber;
 
             $http.get(serviceURL)
                 .then(function (response) {

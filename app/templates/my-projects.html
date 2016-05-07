@@ -1,0 +1,29 @@
+<h1>My Projects</h1>
+<div class="jumbotron table table-striped table-hover">
+
+    <div class="search">
+        <h3>Search:</h3>
+        <input type="search" class="form-control" ng-model="search.Name" placeholder="Search"/>
+    </div>
+
+    <div class="table-my-issues">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th class="project-id">ID</th>
+                <th class="my-project-name">Project</th>
+                <th class="my-project-description">Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="project in allUserProjects.Projects | filter:search">
+                <td>{{project.Id}}</td>
+                <td class="hoverable" ng-click="viewProject(project.Id)">{{project.Name}}</td>
+                <td>{{project.Description}}</td>
+                <td class="hoverable" ng-click="viewProject(issue.Project.Id)">{{issue.Project.Name}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

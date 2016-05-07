@@ -8,6 +8,9 @@
                 <li>
                     <a href="#/">Dashboard</a>
                 </li>
+                <li>
+                    <a href="#/my-projects" ng-click="getProjectsByLeadId()">My Projects</a>
+                </li>
                 <li ng-if="authService.isAdmin()">
                     <a href="#/projects" ng-click="getAllProjects()">All Projects</a>
                 </li>

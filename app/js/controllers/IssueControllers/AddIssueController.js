@@ -30,7 +30,7 @@ app.controller('AddIssueController', [
             issueService.addIssue(issueData)
                 .then(function (response) {
                     notifyService.success('Successfully added issue.');
-                    $location.path('project/' + )
+                    $location.path('project/');
                 }, function (error) {
                     console.log(error);
                 });

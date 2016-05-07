@@ -7,9 +7,10 @@ app.controller('ViewIssueController', [
     'issueService',
     'authService',
     'projectService',
+    'commentService',
     'notifyService',
     '_',
-    function ($scope, $location, $routeParams, issueService, authService, projectService, notifyService, _) {
+    function ($scope, $location, $routeParams, issueService, authService, projectService, commentService, notifyService, _) {
         
         $scope.isDisabled = true;
 
@@ -38,6 +39,14 @@ app.controller('ViewIssueController', [
 
             }, function (error) {
                 notifyService.error(error.Message);
+            });
+
+        commentService.getCommentsByIssueId($routeParams.id)
+            .then(function (commentData) {
+                $scope.comments = commentData;
+                console.log(commentData);
+            }, function (error) {
+                console.log(error);
             });
     }
 ]);

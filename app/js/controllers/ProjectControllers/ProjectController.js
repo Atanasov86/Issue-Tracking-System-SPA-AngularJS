@@ -6,9 +6,10 @@ app.controller('ProjectController', [
     '$routeParams',
     'notifyService',
     'projectService',
+    'authService',
     'issueService',
     '_',
-    function ($scope, $location, $routeParams, notifyService, projectService, issueService, _) {
+    function ($scope, $location, $routeParams, notifyService, projectService, authService, issueService, _) {
         $scope.projectParams = {
             'pageSize': 9,
             'startPage': 1
@@ -27,20 +28,15 @@ app.controller('ProjectController', [
         $scope.getProjectsByLeadId = function () {
             projectService.getProjectsByLeadId()
                 .then(function (response) {
-                    $scope.allUserProjects = response.data;                    
+                    $scope.allUserProjects = response.data;
+                    console.log(response.data);
                 }, function(){
                     notifyService.error('Cannot load projects.');
                 });
         };
 
-        $scope.getAllProject = function () {
-            issueService.getCurrentUserIssues()
-                .then(function (response) {
-                    var projects = _.uniq(response.data.Issues, function (item, key, a) {
-                        return item.Project.Id.toString();
-                    });
-                    $scope.allUserProjects.push(projects);
-                });
+        $scope.viewProject = function (projectId) {
+            $location.path('/projects/' + projectId);
         };
 
         $scope.getProjectsByLeadId();

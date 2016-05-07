@@ -1,6 +1,6 @@
 <div class=jumbotron>
     <h2 class="center-title">Issue "{{issueData.Title}}"</h2>
-    <form ng-controller="IssueController">
+    <form>
         <div class="form-group">
             <label for="issue-title">Issue Title</label>
             <input ng-disabled="{{isDisabled}}" ng-model="issueData.Title" type="text" class="form-control"
@@ -37,7 +37,22 @@
             <label for="issue-description">Description</label>
             <textarea class="form-control" ng-disabled="{{isDisabled}}" ng-model="issueData.Description" id="issue-description"></textarea>
         </div>
-        <a type="submit" ng-if="isProjectLead || isAdmin" href="#/issues/{{issueData.Id}}/edit" class="btn btn-add-issue btn-success">Edit Issue</a>
+        <a type="submit" ng-if="isProjectLead || isAdmin" href="#/issues/{{issueData.Id}}/edit" class="btn btn-add-issue btn-success">
+            Edit Issue
+        </a>
+        <a type="button" class="btn btn-add-issue btn-success" data-toggle="modal" data-target="#myModal">
+            Add Comment
+        </a>
+        <span ng-include="'app/templates/partial/commentModal.html'"></span>
         <a class="btn btn-add-issue btn-info" href="#/">Back</a>
     </form>
+
+    <h2 class="text-center">Comments</h2>
+    <div class="text-center" ng-if="comments.length === 0">No comments</div>
+    <div class="panel panel-default" ng-repeat="comment in comments">
+        <div class="panel-heading">{{comment.Author.Username}} <span class="right">Posted On: {{comment.CreatedOn | date:'dd-MM-yyyy HH:mm:ss'}}</span></div>
+        <div class="panel-body">
+            {{comment.Text}}
+        </div>
+    </div>
 </div>

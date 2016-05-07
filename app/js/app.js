@@ -11,7 +11,11 @@ var app = angular.module('IssueTrackingSystem', [
 app.constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/');
 app.constant('pageSize', 10);
 
-app.config(['$routeProvider', function ($routeProvider) {
+app.config(['$routeProvider' , 'cfpLoadingBarProvider', function ($routeProvider, cfpLoadingBarProvider) {
+
+    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+    cfpLoadingBarProvider.spinnerTemplate = '<div><div class="progress-bar spinner-icon"></div><h2>Loading...</h2></div>';
+
     $routeProvider
         .when('/', {
             templateUrl: 'app/templates/home.html',
@@ -45,6 +49,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'app/templates/add-issue.html',
             controller: 'AddIssueToProjectController'
         })
+        .when('/my-projects', {
+            templateUrl: 'app/templates/my-projects.html',
+            controller: 'ProjectController'
+        })
         .when('/projects', {
             templateUrl: 'app/templates/all-projects.html',
             controller: 'ProjectController'
@@ -64,6 +72,7 @@ app.config(['$routeProvider', function ($routeProvider) {
         .otherwise({
             redirectTo: '/'
         });
+
 }]);
 
 app.run(function ($rootScope, $location, authService) {

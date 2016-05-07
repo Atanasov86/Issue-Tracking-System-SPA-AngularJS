@@ -7,26 +7,22 @@
     <meta name="description" content="Issue Tracking System">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="16x16" href="app/images/favicon-16x16.png">
+    <link rel="stylesheet" href="app/bower_components/angular-loading-bar/build/loading-bar.css">
     <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/superhero-theme.min.css">
     <link rel="stylesheet" href="app/bower_components/ng-notify/dist/ng-notify.min.css">
-    <link rel="stylesheet" href="app/bower_components/angular-loading-bar/build/loading-bar.css">
+
     <link rel="stylesheet" href="app/css/app.css">
 
 </head>
 <body>
+<div id="loading-bar-spinner"></div>
 <header id="app-header">
     <div ng-include="'app/templates/partial/header.html'"></div>
 </header>
 
 <div class="container">
     <div ng-view>
-        <div class="jumbotron">
-            <img src="app/images/softuni-code-wizard.png" alt="wizard-logo"/>
-            <h1>Welcome to SoftUni Issue Tracking System</h1>
-            <a class="btn btn-add-issue btn-success" href="#/login">Login</a>
-            <a class="btn btn-add-issue btn-primary" href="#/register">Register</a>
-        </div>
     </div>
 </div>
 
@@ -53,6 +49,7 @@
 <script src="app/js/services/issueService.js"></script>
 <script src="app/js/services/projectService.js"></script>
 <script src="app/js/services/userService.js"></script>
+<script src="app/js/services/commentService.js"></script>
 
 <script src="app/js/controllers/AuthenticationController.js"></script>
 

@@ -95,14 +95,24 @@ h2.center-title {
     margin: 0 auto;
     text-align: center;
 }
+/*search input*/
 
 .search {
     margin-left: 10px;
+    margin-bottom: 30px;
+    vertical-align: middle;
 }
 
-.search > label > .form-control {
-    width: 300px;
+/*.search > h2 {*/
+    /*display: inline;*/
+/*}*/
+
+.search > input {
+    width: 250px;
+    display: inline;
 }
+
+/*end search input*/
 
 .project {
     text-align: center;
@@ -129,22 +139,48 @@ h2.center-title {
 #projects > div  > ul > li > a {
     text-decoration: none;
 }
-
+/*table styles*/
 .table-my-issues {
-    width: 67%;
+    width: 100%;
     border-radius: 10px;
     margin-left: 10px;
     display: inline-block;
 }
 
-td.issue-name, td.description {
-    width: 35%;
+th.my-project-description, th.my-project-name {
+    width: 42.5%;
 }
+
+th.issue-name, th.description {
+    width: 33%;
+}
+
+th.project-name {
+    width: 20%;
+}
+th.project-id {
+    width: 5%;
+}
+
+th.date, th.status {
+    width: 9%;
+}
+/*End table styles*/
 
 p {
     border: 1px solid #ebebeb;
     padding-top: 8px;
     padding-bottom: 8px;
+}
+
+.panel-body {
+    background-color: white;
+    color: #4E5D6C;
+}
+
+#loading-bar-spinner{
+    left: 48%;
+    top: 10%;
 }
 
 #app-footer h5 {
