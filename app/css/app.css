@@ -167,6 +167,27 @@ th.date, th.status {
 }
 /*End table styles*/
 
+/* modal styles*/
+.modal-body > textarea {
+    width: 100%;
+}
+
+/*End modal styles*/
+
+/* change status form styles*/
+.status-change {
+    margin: 20px 0;
+}
+
+.form-inline {
+    margin: 10px 0;
+}
+
+#newStatus {
+    width: 200px;
+    display: inline;
+}
+/* End change status form*/
 p {
     border: 1px solid #ebebeb;
     padding-top: 8px;

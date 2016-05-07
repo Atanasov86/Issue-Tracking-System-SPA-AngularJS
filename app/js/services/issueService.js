@@ -101,9 +101,9 @@ app.factory('issueService', [
 
             var serviceURL = BASE_URL + 'Issues/' + issueId + '/changestatus?statusid=' + statusId;
 
-            $http.put(serviceURL)
+            $http.put(serviceURL, statusId)
                 .then(function (response) {
-                    deferred.resolve(response);
+                    deferred.resolve(response.data);
                 }, function (error) {
                     deferred.reject(error);
                 });

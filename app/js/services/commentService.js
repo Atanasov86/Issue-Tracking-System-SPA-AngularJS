@@ -33,7 +33,7 @@ app.factory('commentService', [
 
             $http.post(serviceURL, comment)
                 .then(function (response) {
-                    deferred.resolve(response);
+                    deferred.resolve(response.data);
                 }, function (error) {
                     deferred.reject(error);
                 });

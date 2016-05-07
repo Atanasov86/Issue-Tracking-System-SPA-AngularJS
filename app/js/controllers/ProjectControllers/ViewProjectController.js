@@ -38,7 +38,6 @@ app.controller('ViewProjectController', [
         issueService.getProjectIssuesById($routeParams.id)
             .then(function (issuesData) {
                 $scope.projectIssuesData = issuesData.data;
-                console.log($scope.projectIssuesData);
             }, function (error) {
                 notifyService.error(error.Message);
             });

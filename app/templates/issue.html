@@ -18,39 +18,65 @@
         </div>
         <div class="form-group">
             <label for="issue-key">Issue Key</label>
-            <input type="text" ng-disabled="{{isDisabled}}" ng-model="issueData.IssueKey" class="form-control" id="issue-key"/>
+            <input type="text" ng-disabled="{{isDisabled}}" ng-model="issueData.IssueKey" class="form-control"
+                   id="issue-key"/>
         </div>
         <div class="form-group">
             <label for="issue-priority">Priority</label>
-            <input type="text" ng-disabled="{{isDisabled}}" ng-model="issueData.Priority.Name" class="form-control" id="issue-priority"/>
+            <input type="text" ng-disabled="{{isDisabled}}" ng-model="issueData.Priority.Name" class="form-control"
+                   id="issue-priority"/>
         </div>
         <div class="form-group">
             <label for="issue-date">Due Date</label>
-            <input type="date" ng-disabled="{{isDisabled}}" ng-model="issueDate" class="form-control" id="issue-date" />
+            <input type="date" ng-disabled="{{isDisabled}}" ng-model="issueDate" class="form-control" id="issue-date"/>
         </div>
         <div class="form-group">
             <label for="issue-labels">Labels (comma separated)</label>
-            <input type="text" ng-disabled="{{isDisabled}}" ng-model="issueLabels" class="form-control" id="issue-labels" />
+            <input type="text" ng-disabled="{{isDisabled}}" ng-model="issueLabels" class="form-control"
+                   id="issue-labels"/>
             <br>
         </div>
         <div class="form-group">
             <label for="issue-description">Description</label>
-            <textarea class="form-control" ng-disabled="{{isDisabled}}" ng-model="issueData.Description" id="issue-description"></textarea>
+            <textarea class="form-control" ng-disabled="{{isDisabled}}" ng-model="issueData.Description"
+                      id="issue-description"></textarea>
         </div>
-        <a type="submit" ng-if="isProjectLead || isAdmin" href="#/issues/{{issueData.Id}}/edit" class="btn btn-add-issue btn-success">
-            Edit Issue
-        </a>
-        <a type="button" class="btn btn-add-issue btn-success" data-toggle="modal" data-target="#myModal">
-            Add Comment
-        </a>
-        <span ng-include="'app/templates/partial/commentModal.html'"></span>
-        <a class="btn btn-add-issue btn-info" href="#/">Back</a>
+
+        <div class="status-change" name="changeStatusForm">
+            <h3>Status transition scheme</h3>
+            <span>Current Status: <strong>{{issueData.Status.Name}}</strong></span>
+            <div class="form-group">
+                <label for="newStatus">Select new Status</label>
+                <select ng-model="issueData.statusId" id="newStatus" name="newStatus" required="required" class="form-control">
+                    <option ng-repeat="status in issueData.AvailableStatuses" value="{{status.Id}}">{{status.Name}}</option>
+                </select>
+            </div>
+            <button class="btn btn-success" ng-click="changeIssueStatus(issueData.statusId)">
+                Change Status
+            </button>
+        </div>
+
+        <div>
+            <a type="submit" ng-if="isProjectLead || isAdmin" href="#/issues/{{issueData.Id}}/edit"
+               class="btn btn-add-issue btn-success">
+                Edit Issue
+            </a>
+            <a type="button" class="btn btn-add-issue btn-success" data-toggle="modal" data-target="#myModal">
+                Add Comment
+            </a>
+            <span ng-include="'app/templates/partial/commentModal.html'"></span>
+            <a class="btn btn-add-issue btn-info" href="#/">Back</a>
+        </div>
     </form>
+
+
+
 
     <h2 class="text-center">Comments</h2>
     <div class="text-center" ng-if="comments.length === 0">No comments</div>
     <div class="panel panel-default" ng-repeat="comment in comments">
-        <div class="panel-heading">{{comment.Author.Username}} <span class="right">Posted On: {{comment.CreatedOn | date:'dd-MM-yyyy HH:mm:ss'}}</span></div>
+        <div class="panel-heading">{{comment.Author.Username}} <span class="right">Posted On: {{comment.CreatedOn | date:'dd-MM-yyyy HH:mm:ss'}}</span>
+        </div>
         <div class="panel-body">
             {{comment.Text}}
         </div>
