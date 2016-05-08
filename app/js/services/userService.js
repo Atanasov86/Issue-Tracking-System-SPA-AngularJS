@@ -19,17 +19,18 @@ app.factory('userService', [
                 }, function (error) {
                     deferred.reject(error);
                 });
-            
+
             return deferred.promise;
         }
 
-        function makeAdmin(userId){
+        function makeMeAdmin(user){
             var deferred = $q.defer();
 
             var serviceURL = BASE_URL + 'Users/makeadmin';
+
             authService.setAuthHeaders();
 
-            $http.put(serviceURL, userId)
+            $http.put(serviceURL, user)
                 .then(function (response) {
                     deferred.resolve(response);
                 }, function (error) {
@@ -41,7 +42,7 @@ app.factory('userService', [
 
         return {
             getAllUsers: getAllUsers,
-            makeAdmin: makeAdmin
+            makeMeAdmin: makeMeAdmin
         };
     }
 ]);

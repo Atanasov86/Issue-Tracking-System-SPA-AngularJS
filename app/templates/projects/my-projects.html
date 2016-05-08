@@ -1,7 +1,6 @@
 <h1>My Projects</h1>
 <div class="jumbotron table table-striped table-hover">
-
-    <div class="search">
+    <div class="search input-group">
         <h3>Search:</h3>
         <input type="search" class="form-control" ng-model="search.Name" placeholder="Search"/>
     </div>
@@ -20,10 +19,8 @@
                 <td>{{project.Id}}</td>
                 <td class="hoverable" ng-click="viewProject(project.Id)">{{project.Name}}</td>
                 <td>{{project.Description}}</td>
-                <td class="hoverable" ng-click="viewProject(issue.Project.Id)">{{issue.Project.Name}}</td>
             </tr>
             </tbody>
         </table>
     </div>
-
 </div>

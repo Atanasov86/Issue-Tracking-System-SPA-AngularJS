@@ -22,6 +22,9 @@
                         <li>
                             <a href="#/profile/password">Change Password</a>
                         </li>
+                        <li ng-if="authService.isAdmin()">
+                            <a href="#/all-users" ng-click="getAllUsers()">All users</a>
+                        </li>
                         <li>
                             <a ng-click="logout()" type="button" href="#/">Logout</a>
                         </li>

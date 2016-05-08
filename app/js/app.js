@@ -5,16 +5,12 @@ var app = angular.module('IssueTrackingSystem', [
     'ngNotify',
     'ui.bootstrap.pagination',
     'underscore',
-    'localytics.directives',
     'angular-loading-bar']);
 
 app.constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/');
 app.constant('pageSize', 10);
 
-app.config(['$routeProvider' , 'cfpLoadingBarProvider', function ($routeProvider, cfpLoadingBarProvider) {
-
-    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
-    cfpLoadingBarProvider.spinnerTemplate = '<div><div class="progress-bar spinner-icon"></div><h2>Loading...</h2></div>';
+app.config(['$routeProvider' , function ($routeProvider) {
 
     $routeProvider
         .when('/', {
@@ -30,43 +26,47 @@ app.config(['$routeProvider' , 'cfpLoadingBarProvider', function ($routeProvider
             controller: 'AuthenticationController'
         })
         .when('/profile/password', {
-            templateUrl: 'app/templates/change-password.html',
+            templateUrl: 'app/templates/partial/change-password.html',
             controller: 'AuthenticationController'
         })
+        .when('/all-users', {
+            templateUrl: 'app/templates/all-users.html',
+            controller: 'AdminController'
+        })
         .when('/issues/:id', {
-            templateUrl: 'app/templates/issue.html',
+            templateUrl: 'app/templates/issues/issue.html',
             controller: 'ViewIssueController'
         })
         .when('/issues/:id/edit', {
-            templateUrl: 'app/templates/edit-issue.html',
+            templateUrl: 'app/templates/issues/edit-issue.html',
             controller: 'EditIssueController'
         })
         .when('/projects/add-issue', {
-          templateUrl: 'app/templates/add-issue.html',
+          templateUrl: 'app/templates/issues/add-issue.html',
           controller: 'AddIssueController'
         })
         .when('/projects/:id/add-issue', {
-            templateUrl: 'app/templates/add-issue.html',
+            templateUrl: 'app/templates/issues/add-issue.html',
             controller: 'AddIssueToProjectController'
         })
         .when('/my-projects', {
-            templateUrl: 'app/templates/my-projects.html',
+            templateUrl: 'app/templates/projects/my-projects.html',
             controller: 'ProjectController'
         })
         .when('/projects', {
-            templateUrl: 'app/templates/all-projects.html',
+            templateUrl: 'app/templates/projects/all-projects1.html',
             controller: 'ProjectController'
         })
         .when('/projects/add', {
-            templateUrl: 'app/templates/add-project.html',
+            templateUrl: 'app/templates/projects/add-project.html',
             controller: 'AddProjectController'
         })
         .when('/projects/:id', {
-            templateUrl: 'app/templates/project.html',
+            templateUrl: 'app/templates/projects/project.html',
             controller: 'ViewProjectController'
         })
         .when('/projects/:id/edit', {
-            templateUrl: 'app/templates/edit-project.html',
+            templateUrl: 'app/templates/projects/edit-project.html',
             controller: 'EditProjectController'
         })
         .otherwise({

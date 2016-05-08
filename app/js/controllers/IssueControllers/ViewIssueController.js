@@ -41,6 +41,7 @@ app.controller('ViewIssueController', [
                 notifyService.error(error.Message);
             });
 
+
         $scope.changeIssueStatus = function (statusId) {
             issueService.changeIssueStatus($routeParams.id, statusId)
                 .then(function (response) {
@@ -62,11 +63,9 @@ app.controller('ViewIssueController', [
                 notifyService.error('Cannot load comments.');
             });
 
-
         $scope.addComment = function (comment) {
             commentService.addCommentByIssueId($routeParams.id, comment)
                 .then(function (response) {
-                    console.log(response);
                     notifyService.success('Successfully created comment.');
                     $scope.comments = response;
                 }, function () {

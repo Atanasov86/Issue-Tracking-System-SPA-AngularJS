@@ -45,15 +45,16 @@
         <div class="status-change" name="changeStatusForm">
             <h3>Status transition scheme</h3>
             <span>Current Status: <strong>{{issueData.Status.Name}}</strong></span>
-            <div class="form-group">
+            <div class="form-group" ng-if="issueData.Status.Name !== 'Closed'">
                 <label for="newStatus">Select new Status</label>
                 <select ng-model="issueData.statusId" id="newStatus" name="newStatus" required="required" class="form-control">
                     <option ng-repeat="status in issueData.AvailableStatuses" value="{{status.Id}}">{{status.Name}}</option>
                 </select>
+                <button class="btn btn-success" ng-click="changeIssueStatus(issueData.statusId)">
+                    Change Status
+                </button>
             </div>
-            <button class="btn btn-success" ng-click="changeIssueStatus(issueData.statusId)">
-                Change Status
-            </button>
+
         </div>
 
         <div>
@@ -61,21 +62,23 @@
                class="btn btn-add-issue btn-success">
                 Edit Issue
             </a>
-            <a type="button" class="btn btn-add-issue btn-success" data-toggle="modal" data-target="#myModal">
-                Add Comment
-            </a>
-            <span ng-include="'app/templates/partial/commentModal.html'"></span>
             <a class="btn btn-add-issue btn-info" href="#/">Back</a>
         </div>
     </form>
 
-
-
-
     <h2 class="text-center">Comments</h2>
+    <div class="addCommentForm">
+        <h4>add comment</h4>
+        <textarea ng-model="comment.Text" class="form-control" rows="5" placeholder="Write your comment"></textarea>
+        <div class="text-right">
+            <a type="button" ng-click="addComment(comment)" class="btn btn-add-issue btn-success">
+                Add Comment
+            </a>
+        </div>
+    </div>
     <div class="text-center" ng-if="comments.length === 0">No comments</div>
     <div class="panel panel-default" ng-repeat="comment in comments">
-        <div class="panel-heading">{{comment.Author.Username}} <span class="right">Posted On: {{comment.CreatedOn | date:'dd-MM-yyyy HH:mm:ss'}}</span>
+        <div class="panel-heading">{{comment.Author.Username}} <span class="text-right">Posted On: {{comment.CreatedOn | date:'dd-MM-yyyy HH:mm:ss'}}</span>
         </div>
         <div class="panel-body">
             {{comment.Text}}

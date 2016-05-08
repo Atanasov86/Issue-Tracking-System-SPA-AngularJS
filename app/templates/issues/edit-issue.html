@@ -1,43 +1,43 @@
 <div class=jumbotron>
     <h2 class="center-title">Edit Issue {{issueData.Title}}</h2>
     <div>
-        <form>
+        <form name="editIssueForm">
             <div class="form-group">
                 <label for="issue-title">Title</label>
-                <input type="text" ng-disabled="!(isAdmin || isProjectLead)" ng-model="issueData.Title" class="form-control" id="issue-title" placeholder="Issue Title" >
+                <input type="text" ng-disabled="!(isAdmin || isProjectLead)" ng-model="issueData.Title" class="form-control" id="issue-title" placeholder="Issue Title" required/>
             </div>
             <div class="form-group">
                 <label for="issue-assignee">Assignee</label>
-                <select ng-model="issueData.Assignee.Id" ng-disabled="!(isAdmin || isProjectLead)" id="issue-assignee" class="form-control">
+                <select ng-model="issueData.Assignee.Id" ng-disabled="!(isAdmin || isProjectLead)" id="issue-assignee" class="form-control" required>
                     <option  ng-repeat="user in users | orderBy:'Username'" ng-selected="{{issueData.Assignee.Id == user.Id}}" value="{{user.Id}}">{{user.Username}}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="project-name">Project</label>
-                <input ng-disabled="true" type="text" ng-model="issueData.Project.Name" class="form-control" id="project-name" placeholder="Project Name" />
+                <input ng-disabled="true" type="text" ng-model="issueData.Project.Name" class="form-control" id="project-name" placeholder="Project Name" required/>
             </div>
 
             <div class="form-group">
                 <label for="issue-priority">Priority</label>
-                <select ng-model="issueData.Priority.Id" ng-disabled="!(isAdmin || isProjectLead)" id="issue-priority" class="form-control">
+                <select ng-model="issueData.Priority.Id" ng-disabled="!(isAdmin || isProjectLead)" id="issue-priority" class="form-control" required>
                     <option ng-selected="{{priority.Id === issueData.Priority.Id}}" ng-repeat="priority in priorities" value="{{priority.Id}}">{{priority.Name}}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="issue-date">Due Date</label>
-                <input type="date" ng-disabled="!(isAdmin || isProjectLead)" ng-model="issueData.DueDate" class="form-control" id="issue-date" placeholder="dd/mm/yyyy" />
+                <input type="date" ng-disabled="!(isAdmin || isProjectLead)" ng-model="issueData.DueDate" class="form-control" id="issue-date" placeholder="dd/mm/yyyy" required/>
             </div>
             <div class="form-group">
                 <label for="issue-labels">Labels (comma separated)</label>
-                <input ng-disabled="!(isAdmin || isProjectLead)" ng-model="issueData.LabelsAsString" type="text" class="form-control" id="issue-labels" placeholder="Labels" />
+                <input ng-disabled="!(isAdmin || isProjectLead)" ng-model="issueData.LabelsAsString" type="text" class="form-control" id="issue-labels" placeholder="Labels" required/>
                 <br>
             </div>
             <div class="form-group">
                 <label for="issue-description">Description</label>
-                <textarea ng-disabled="!(isAdmin || isProjectLead)" ng-model="issueData.Description" id="issue-description" class="form-control"
-                          placeholder="Description"></textarea>
+                <textarea ng-disabled="!(isAdmin || isProjectLead)" ng-model="issueData.Description" minlength="5" id="issue-description" class="form-control"
+                          placeholder="Description" required></textarea>
             </div>
-            <button type="submit" ng-click="editIssue(issueData)" class="btn btn-success btn-add-issue">Save</button>
+            <button type="submit" ng-click="editIssue(issueData)" ng-disabled="editIssueForm.$invalid" class="btn btn-success btn-add-issue">Save</button>
             <a class="btn btn-info btn-add-issue" href="#/issues/{{issueData.Id}}">Back</a>
         </form>
         <form>

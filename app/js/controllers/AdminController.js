@@ -6,15 +6,24 @@ app.controller('AdminController', [
     'userService',
     'notifyService',
     function ($scope, $location, userService, notifyService) {
-        
-        $scope.makeMeAdmin = function() {
-            userService.makeMeAdmin(userId)
+
+        userService.getAllUsers()
+            .then(function(users){
+                $scope.allUsers = users;
+            }, function(error){
+                notifyService.error('Cannot load users.');
+            });
+
+        $scope.makeMeAdmin = function(user) {
+            var admin = {
+                userId: user.Id
+            };
+            userService.makeMeAdmin(admin)
                 .then(function (response){
-                    //TODO: show success message with name of user
-                    notifyService.success()
+                    notifyService.success('User ' + user.Username + 'now is admin.');
                 }, function (error){
                     notifyService.error(error.Message);
                 });
-        }
+        };
     }
 ]);

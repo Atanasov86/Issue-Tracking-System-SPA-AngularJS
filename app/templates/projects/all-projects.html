@@ -1,0 +1,40 @@
+<h1>All Projects</h1>
+
+<div class="search">
+    <h3>Search:</h3>
+    <input type="search" class="form-control" ng-model="search.Name" placeholder="Search"/>
+</div>
+
+<table class="table table-hover table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Project</th>
+        <th>Description</th>
+        <th>Project Leader</th>
+        <th>Labels</th>
+        <th>Priorities</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="project in projects | filter:search.Name">
+        <td>{{project.Id}}</td>
+        <td class="hoverable" ng-click="viewProject(project.Id)">{{project.Name}}</td>
+        <td width="25%">{{project.Description}}</td>
+        <td>{{project.Lead.Username}}</td>
+        <td>{{project.Labels}}</td>
+        <td>{{project.Priorities}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="pagination-div">
+    <pagination total-items="totalIssues" ng-model="issueParams.startPage"
+                items-per-page="issueParams.pageSize" ng-change="getCurrentUserIssues()"
+                max-size="9" boundary-links="true"
+                class="aligner">
+    </pagination>
+</div>
+
+
+

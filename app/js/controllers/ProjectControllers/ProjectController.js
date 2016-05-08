@@ -9,7 +9,7 @@ app.controller('ProjectController', [
     'authService',
     'issueService',
     '_',
-    function ($scope, $location, $routeParams, notifyService, projectService, authService, issueService, _) {
+    function ($scope, $location, $routeParams, notifyService, projectService) {
         $scope.projectParams = {
             'pageSize': 9,
             'startPage': 1
@@ -18,7 +18,8 @@ app.controller('ProjectController', [
         $scope.getAllProjects = function () {
             projectService.getAllProjects($scope.projectParams)
                 .then(function (response) {
-                    $scope.projects = response.Projects;                    
+                    $scope.projects = response;
+                    console.log(response);
                     $scope.totalProjects = response.TotalCount;
                 }, function (error) {
                     notifyService.error('Cannot load projects...', error);
@@ -29,7 +30,6 @@ app.controller('ProjectController', [
             projectService.getProjectsByLeadId()
                 .then(function (response) {
                     $scope.allUserProjects = response.data;
-                    console.log(response.data);
                 }, function(){
                     notifyService.error('Cannot load projects.');
                 });

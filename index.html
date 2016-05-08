@@ -7,27 +7,26 @@
     <meta name="description" content="Issue Tracking System">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="16x16" href="app/images/favicon-16x16.png">
-    <link rel="stylesheet" href="app/bower_components/angular-loading-bar/build/loading-bar.css">
     <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/superhero-theme.min.css">
     <link rel="stylesheet" href="app/bower_components/ng-notify/dist/ng-notify.min.css">
-
+    <link rel="stylesheet" href="app/bower_components/angular-loading-bar/build/loading-bar.css">
     <link rel="stylesheet" href="app/css/app.css">
 
 </head>
 <body>
-<div id="loading-bar-spinner"></div>
+
 <header id="app-header">
     <div ng-include="'app/templates/partial/header.html'"></div>
 </header>
 
-<div class="container">
-    <div ng-view>
-    </div>
+<div class="container" ng-cloak>
+    <div loading id="loading-bar-spinner"></div>
+    <div ng-view></div>
 </div>
 
 <footer id="app-footer">
-    <h5>&copy; 2016 by Software University Foundation, No Rights Reserved</h5>
+    <div ng-include="'app/templates/partial/footer.html'"></div>
 </footer>
 
 <script src="app/bower_components/jquery/dist/jquery.min.js"></script>
@@ -35,7 +34,6 @@
 <script src="app/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="app/bower_components/angular/angular.js"></script>
 <script src="app/bower_components/angular-route/angular-route.js"></script>
-<script src="app/bower_components/angular-chosen-localytics/dist/angular-chosen.js"></script>
 <script src="app/bower_components/angular-loading-bar/build/loading-bar.js"></script>
 <script src="app/bower_components/angular-underscore-module/angular-underscore-module.js"></script>
 <script src="app/bower_components/ui.bootstrap/ui.bootstrap.pagination-0.12.0.js"></script>
@@ -55,15 +53,17 @@
 
 <script src="app/js/controllers/IssueControllers/IssueController.js"></script>
 <script src="app/js/controllers/IssueControllers/ViewIssueController.js"></script>
-<script src="app/js/controllers/IssueControllers/AddIssueController.js"></script>
 <script src="app/js/controllers/IssueControllers/EditIssueController.js"></script>
 <script src="app/js/controllers/IssueControllers/AddIssueToProjectController.js"></script>
+<script src="app/js/controllers/AdminController.js"></script>
 
 
 <script src="app/js/controllers/ProjectControllers/ProjectController.js"></script>
 <script src="app/js/controllers/ProjectControllers/ViewProjectController.js"></script>
 <script src="app/js/controllers/ProjectControllers/AddProjectController.js"></script>
 <script src="app/js/controllers/ProjectControllers/EditProjectController.js"></script>
+
+<script src="app/js/directives/loadingDirective.js"></script>
 
 
 </body>
