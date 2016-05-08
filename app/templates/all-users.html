@@ -1,0 +1,26 @@
+<div class="jumbotron table table-striped table-hover">
+    <h1>All Users</h1>
+
+    <div class="search input-group">
+        <h3>Search:</h3>
+        <input type="search" class="form-control" ng-model="search" placeholder="Search"/>
+    </div>
+
+    <div class="table-my-issues">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th class="issue-name">Usename</th>
+                <th class="description">ID</th>
+                <th class="project-name">Make Admin</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="user in allUsers | filter:search">
+                <td class="hoverable">{{user.Username}}</td>
+                <td>{{user.Id}}</td>
+                <td><a class="btn btn-success btn-sm" href="#/" ng-click="makeMeAdmin(user)">Make me admin</a></td>
+            </tr>
+            </tbody>
+        </table>
+      </div>

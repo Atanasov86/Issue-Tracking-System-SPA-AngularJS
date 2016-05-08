@@ -1,0 +1,15 @@
+<div>
+    <h1>All Project</h1>
+    <div class="search">
+        <h3>Search:</h3>
+        <input type="search" class="form-control" ng-model="search.Name" placeholder="Search"/>
+    </div>
+    <div ng-repeat="project in projects | filter:search.Name">
+        <div class="project-name">
+            <h3>Project Name</h3><span>{{project.Name}}</span>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</div>
